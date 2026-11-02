@@ -25,17 +25,12 @@ Realisierungen erhalten die sparsamere Interpretation. Ein tatsächlich
 hörbares Tonende darf dabei nicht entfernt werden. Für ein kurz ausklingendes
 Instrument können Halbe und Viertel plus Viertelpause äquivalent sein;
 für einen gehaltenen Orgelton mit hörbarer Unterbrechung sind sie es nicht.
-Für Letzteren gilt die qualitative Erwartung: Viertel plus Pause ist
-informationsreicher als durchgehaltene Halbe.
-
-**Prüfbefund aus F05, noch zu entscheiden:** Die konkret ausgearbeitete
-Übergangsvariante K-G ergibt im gemeinsamen Fenster `[0,2)` für die Halbe
-`10 01` und für Viertel plus hörbare Pause `10 11`, jeweils 4 Bit vor
-zusätzlichem Abschluss. Die hörbaren Enden bleiben verschieden. Damit ist
-die frühere strikte Ungleichung unter dieser Variante nicht hergeleitet.
-Sie wird weder stillschweigend aufgehoben noch durch erfundene Zusatzbefehle
-erzwungen. [Fallvergleich und Entscheidungsvorschlag](02-bildpruefung-und-ereignisablaeufe.md#72-halbe-gegen-viertel-plus-viertelpause)
-halten diesen Konflikt ausdrücklich offen.
+**Festgelegt – verschiedene Verläufe dürfen gleiche Summen haben:** Halbe
+und Viertel mit hörbarer Pause bleiben durch ihre Ereignisse und durch
+`10 01` bzw. `10 11` unterscheidbar. Beide können je 4 Bit kosten.
+Hörbare Verschiedenheit verlangt nicht automatisch verschiedene Summen.
+Diese Entscheidung ersetzt die frühere Forderung nach strikt höherem
+Informationswert der hörbaren Unterbrechung; deren Erhaltung bleibt Pflicht.
 
 **Erforderliche Ausdrucksfähigkeit (E02 als Folgerung):** Einsätze, Dauern,
 Pausen, Bindungen ohne Neuanschlag, Taktgrenzen, Bezugspuls und Phase,
@@ -80,11 +75,12 @@ bei weiterhin klingendem Ton behandelt wird. Diese Regeln sind für das
 Orgelbeispiel entscheidend, auch wenn ein Format Dauern vollständig liefert.
 
 Die [F05-Rechnungen](02-bildpruefung-und-ereignisablaeufe.md#3-schrittweise-rechnung-f051f057-unter-i-und-g)
-konkretisieren dies als **unbestätigtes Rechenprofil K**, nicht als neue
-Festlegung: P erhält Teilung/Phase, aber erwartet keine neuen Töne; G
+konkretisieren dies als **Rechenprofil K mit noch unbestätigten Teilen**:
+P erhält darin Teilung/Phase, erwartet aber keine neuen Töne; G
 erwartet zunächst ein Ende nach Δ und erlaubt reguläre Reartikulation
 ohne `11 10`. A=0 wird für die sieben Figuren ausdrücklich angenommen.
-Initialisierung der Anfangspause und Abschluss werden in Varianten gerechnet.
+Anfangspause und Analysegrenze sind inzwischen entschieden: `11` am
+Anfang bezahlen; keine zusätzliche Anweisung allein an der Fenstergrenze.
 
 ## 2. Wörterbuch und Zustand
 
@@ -122,7 +118,16 @@ liegt bei 2. Der Einsatz bei 3/2 führt durch `00 00` zu Δ=1/2, ohne den
 Anker zu verschieben. Diese Bestätigung legt noch keine allgemeine
 Ankerregel für andere Figuren oder Taktübergänge fest.
 
-**Offen (W04/W06):** Anfangspause, Vorgeschichte, neuer Analysebeginn,
+**Festgelegt – Anfangspause:** Der betrachtete Takt und das Metrum stehen
+bereits fest. Dass an seinem Anfang nichts erklingt, gehört zum rhythmischen
+Verlauf und kostet `11` (2 Bit). Die Analyse darf diese Information nicht
+durch einen erst beim ersten Ton beginnenden Kostenauftrag ausklammern.
+Der erste spätere Einsatz kostet weiterhin `10`; die Pausengliederung
+rechtfertigt keine zusätzliche Teilung. Ein noch uninitialisierter
+Spielmodus beschreibt höchstens den Zustand vor der initialen Anweisung,
+nicht eine kostenlose Anfangspause.
+
+**Offen (W04/W06):** Vorgeschichte, neuer Analysebeginn,
 Ankerauswahl und Phase außerhalb des bestätigten Punktierungsfalls.
 Insbesondere darf eine vorhandene Vorgeschichte
 die bestätigte Zahlung des ersten Einsatzes nicht still aufheben.
@@ -210,15 +215,19 @@ bereits erklärt oder daneben ein `01` erforderlich ist. Gleichzeitige
 Anweisungen brauchen eine definierte Reihenfolge, weil sie andere Zustände
 und Erwartungen erzeugen können.
 
-**Neu sichtbar gewordene Lücke – Analyseende:** Nach dem letzten Ereignis
-fehlen sonst unbegrenzt weitere erwartete Einsätze. **Vorschlag V06:** Ein
-explizites Beobachtungsfenster besitzt einen bekannten Endpunkt. Erwartungen
-am Endpunkt oder danach werden nicht als Auslassungen gewertet. Fristen
-innerhalb des Fensters werden ausgewertet; nicht abgeschlossene Fristen
-am Rand bleiben als solche sichtbar. Ob ein hörbares Enden genau am Rand
-als Abschlussereignis mitzählt, ist gesondert zu entscheiden. Endliche
-Partitur, Ausschnitt und weiterlaufende Wiedergabe sind verschiedene
-Bedingungen, keine automatisch gleichen Enden.
+**Festgelegt – Analysegrenze:** Kein zusätzliches `11` allein wegen der
+Grenze eines betrachteten Ausschnitts. Sie ist keine musikalische
+Zustandsänderung. Bei fortlaufender Analyse wird der Zustand weitergeführt;
+tatsächliche Ereignisse an der Grenze werden dort regulär ausgewertet.
+Ein hörbares Tonende an der Grenze bleibt also erhalten und kann nach den
+normalen Übergangsregeln eine Anweisung begründen, aber nicht aufgrund
+der bloßen Grenze. Es gibt weder einen kostenlosen Reset noch eine
+pauschale Abschlussgebühr. Die F05-Kosten für `[0,4)` enthalten keinen
+künstlichen Abschluss; Ereignisse bei 4 gehören zur Auswertung an 4.
+
+**Weiter offen:** Die konkrete Erkennung und Zuordnung einer vor der Grenze
+entstandenen, erst danach entscheidbaren Ausbleibeerwartung. In einer
+fortlaufenden Analyse darf sie nicht mit dem Ausschnitt verworfen werden.
 
 ## 4. Minimum ohne Löschung der Vergangenheit
 
@@ -345,7 +354,7 @@ noch fehlen, wird kein exaktes Minimum behauptet.
 | D03 | Welche Interpretation wird wann festgeschrieben? Welche Korrektur bleibt kostenpflichtig? | V07 und F05.3.I: konkurrierende 6-Bit-Pfade bezahlen dieselbe Ausbleibeevidenz, ohne zwingend dieselben Befehle zu verwenden. Punktierungsfall als Gegenprobe erhalten. |
 | D04 | Tonende, Dauererwartung und Pause: wann `11`, wann `01`, wann beide? | I und G festgelegt; hörbare Enden erhalten. Ausbleiben ist auch unter I Evidenz für `11` oder `01`; Tonende für `11` nicht notwendig. F05.6.I muss `10 11` berücksichtigen. Allgemeine Auswahl-/Übergangsregeln noch offen. |
 | D05 | Ausbleibefrist, konkurrierende Ereignisse, wiederholtes Ausbleiben und Analyseende. | V05/V06; Rand- und Gleichzeitigkeitstests nötig. |
-| D06 | Anfangspause und Taktabschluss einschließlich Fristen jenseits der Grenze. | F05.5/7: S+ (initial `11`) gegen SU (U bis erster Ton), Differenz 2 Bit. K-E gegen ausdrücklichen P-Abschluss E-P mit ausgewiesenen Kosten. Alles unbestätigte Varianten; kein kostenloser Reset. |
+| D06 | Anfangspause und Analysegrenze einschließlich Fristen jenseits der Grenze. | Entschieden: Anfangspause mit `11` bezahlen; keine Zusatzanweisung allein wegen der Analysegrenze, Zustand fortführen und Grenzereignisse regulär auswerten. Noch offen ist die Zuordnung grenzüberschreitender Erkennung. |
 | D07 | Zusätzliche Triolenoperationen, aktivierende Kosten, Erkennung, Taktwechsel. | R03/R04 bleiben Vorschläge. |
 | D08 | Korrekturen auf Foto 1 und komplexer 22-Bit-Fall. | Beide ersten `01` auf Foto 1 ausdrücklich zu `00` korrigiert. Nur der komplexe 22-Bit-Fall bleibt sicher zu transkribieren. |
 | D09 | Profilzeitbasis, erstes Format, Mehrstimmigkeit, weitere Teilungen, Generatorziele. | Erst nach belastbaren einfachen Ereignisabläufen entscheiden. |

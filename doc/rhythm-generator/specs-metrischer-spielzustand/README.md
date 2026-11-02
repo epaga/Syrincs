@@ -46,12 +46,13 @@ nicht behauptet.
 
 ## Geprüfter Repository-Stand
 
-Aktueller F05-Durchgang: Branch `docs/metrischer-spielzustand-spezifikation`,
-HEAD `835655ee26c40f54b3c7934c5f9e6cf153b559a0`; gegenüber dem genannten
-Ausgangspunkt keine neueren Commits und keine Änderungen an versionierten
-Dateien zu Arbeitsbeginn. Die übrigen unversionierten Fotos und
-`projektanalyse/` bleiben unverändert. Die folgende Codeinventur beschreibt
-weiterhin den historischen Implementierungsstand, nicht neue Produktionslogik.
+Die F05-Rechnungen wurden auf `835655e` ausgearbeitet und mit `1147924`
+committet. Die anschließenden Entscheidungen zu Anfangspause, gleichen
+Summen und Analysegrenze werden auf diesem Stand im Branch
+`docs/metrischer-spielzustand-spezifikation` nachgezogen. Zu Beginn dieses
+Nachtrags waren keine versionierten Benutzerdateien geändert. Die übrigen
+unversionierten Fotos und `projektanalyse/` bleiben unverändert. Die folgende
+Codeinventur beschreibt den historischen Implementierungsstand.
 
 Gelesener HEAD: `5eed42c610a392bc9da03e82ba34176100392460`, Arbeitsbranch
 `docs/metrischer-spielzustand-spezifikation`. Der vom Entwurf genannte
@@ -108,26 +109,28 @@ und die daraus folgenden Äquivalenzprüfungen getrennt aus.
 Die sieben einfachen F05-Figuren sind jetzt in
 [Abschnitt 3 der Ereignisabläufe](02-bildpruefung-und-ereignisablaeufe.md#3-schrittweise-rechnung-f051f057-unter-i-und-g)
 schrittweise unter I und G berechnet, einschließlich konkurrierender `11`-/
-`01`-Pfade. Das dort benannte Rechenprofil K ist ausdrücklich unbestätigt.
-Günstigste dargestellte Kosten vor einem zusätzlichen Abschluss: I/G
-`2/2, 4/6, 6/6, 4/4, 6/6, 4/4, 4/4` für F05.1–F05.7, wenn eine
-Anfangspause mit `11` initialisiert wird. Eine alternativ bis zum ersten
-Ton uninitialisierte Analyse liegt bei F05.5/7 je 2 Bit darunter.
+`01`-Pfade. K-A, K-P und die noch unbestätigten Teile von K-G bleiben
+Rechenannahmen. Anfangspause und Analysegrenze sind entschieden:
+Anfangspause mit `11` bezahlen; kein zusätzliches `11` allein wegen der
+Grenze; Zustand fortführen und tatsächliche Grenzereignisse regulär auswerten.
+Günstigste dargestellte Kosten für `[0,4)`: I/G
+`2/2, 4/6, 6/6, 4/4, 6/6, 4/4, 4/4` für F05.1–F05.7.
+Die frühere SU-Variante ohne Anfangskosten ist ausgeschlossen.
 Dies sind keine nachgewiesenen Minima des noch unvollständigen Vertrags.
 
-Der Durchgang zeigt außerdem einen fachlichen Konflikt: Im G-Vergleich
-Halbe gegen Viertel plus hörbare Pause liefern `10 01` bzw. `10 11`
-zunächst beide 4 Bit. Die ältere Forderung nach strikt höherem Wert
-der Unterbrechung ist mit diesem Übergangsvorschlag nicht hergeleitet und
-bleibt ausdrücklich zur Entscheidung offen. Anfangspause, dieser Konflikt
-und Abschluss sind als drei priorisierte Rückfragen ausgearbeitet.
+Im G-Vergleich Halbe gegen Viertel plus hörbare Pause dürfen `10 01`
+bzw. `10 11` beide 4 Bit kosten. Die unterschiedliche Ereignisfolge und
+Erklärung bleibt erhalten; die frühere Forderung nach strikt höherem
+Wert der Unterbrechung ist durch diese Entscheidung abgelöst.
+Die drei zuvor priorisierten Rückfragen sind damit geschlossen und werden
+in den Ereignisabläufen als Entscheidungen statt als offene Fragen geführt.
 
 Geprüft wurden Dokumente, Produktionscode, einschlägige Testquellen,
 beide Fotos und ausgewählte London-Originalscreenshots sowie ergänzende
 Primärquellen. Kein neuer Softwaretestlauf und keine Audio-/DB-Abnahme:
 Dieser Durchgang ändert ausschließlich fachliche Dokumente. Zusätzlich
-wurden mit einer temporären Rechenhilfe 25 dargestellte K-Kandidaten
-gegen die notierten Onsets, G-Tonenden und Befehlsummen sowie 21 explizite
+wurden mit einer temporären Rechenhilfe 20 weiterhin zugelassene K-Kandidaten
+gegen die notierten Onsets, G-Tonenden und Befehlsummen sowie 19 explizite
 Kostenformeln geprüft. Das prüft die angegebenen Pfade unter K, weder die
 psychologische Gültigkeit der Zusatzannahmen noch vollständige Minimalität.
 Markdown, lokale Linkziele und `git diff --check` wurden geprüft.

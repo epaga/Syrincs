@@ -70,7 +70,7 @@ Bearbeitungsbasis dieses Durchgangs: `835655ee26c40f54b3c7934c5f9e6cf153b559a0`.
 `IMG_2215.JPEG` wurde erneut am Bild geprüft. Die Quellenlesung in Abschnitt 2
 bleibt erhalten; sie bestimmt weder Erkenntnisreihenfolge noch Minimum.
 
-### 3.1 Gemeinsamer Rahmen und ausdrücklich unbestätigte Rechenannahmen
+### 3.1 Gemeinsamer Rahmen, Festlegungen und verbleibende Rechenannahmen
 
 Alle vierzehn Fälle haben Beobachtungsfenster `[0,4)`, bekannten 4/4-Bezug,
 Viertelabstand Δ=1 und keine mitgelieferte Vorgeschichte. I besitzt nur die
@@ -84,7 +84,9 @@ Erkennung später, ist der jeweilige Pfad nur ein bedingtes Ergebnis.
 Keine Millisekundenfrist wird festgelegt. Fehlende G-Offsets im bestätigten
 Halbenfall werden gemäß Projektinhaber am musikalischen Viertelende erkannt.
 
-**Rechenprofil K, Vorschlag und kein neuer verbindlicher Vertrag:**
+**Rechenprofil K:** K-A, K-P und K-G bleiben unbestätigte
+Konkretisierungen. K-E und K-S sind inzwischen durch die folgenden
+Entscheidungen festgelegt; der Gesamtvertrag ist damit noch nicht vollständig.
 
 - **K-A (Phase):** Für diese sieben rastergebundenen Rechnungen bleibt A=0.
   Neue Erwartungen liegen auf diesem Gitter; nach Änderungen werden nur
@@ -108,18 +110,16 @@ Halbenfall werden gemäß Projektinhaber am musikalischen Viertelende erkannt.
   P bei weiter hörbar gehaltenem Ton ist unzulässig. Dieser konkrete
   Übergangsvorschlag ist zu bestätigen; er ergänzt die bereits festgelegte
   Erhaltung hörbarer Enden und Halben-Erkennung.
-- **K-E (Ende):** Zahlen bezeichnen die Anweisungen für `[0,4)` vor einer
-  eventuellen zusätzlichen Abschlussanweisung. Keine Auslassung bei 4 wird
-  angenommen. Hörbare G-Enden bei 4 werden trotzdem im Randprotokoll erhalten.
-  Sie werden weder gelöscht noch hier schon mit einer erfundenen
-  Abschlussgebühr versehen. Fortsetzung ab 4 wäre ein weiterer Auftrag.
-- **K-S (Beginn):** Für Anfangspausen werden zwei Varianten gerechnet:
-  **S+** erklärt den Anfangszustand ausdrücklich mit `11` (2 Bit);
-  **SU** belässt U bis zum ersten Einsatz ohne vorherige Spielerwartung.
-  SU ist eine offene Initialisierungsalternative, kein stillschweigend
-  kostenloser Pausenzustand und kein Zustandsreset. Der erste Einsatz
-  kostet in beiden Varianten immer `10`. Vorschlag: S+, damit auch der
-  Beginn als musikalischer Zustand ausdrücklich initialisiert wird.
+- **K-E (Analysegrenze), festgelegt:** Für `[0,4)` entsteht kein `11`
+  allein wegen der Grenze bei 4. Endzustand und offene Erwartungen werden
+  in einer fortlaufenden Analyse übernommen. Tatsächliche G-Enden und
+  andere Ereignisse bei 4 werden dort regulär ausgewertet; sie bleiben
+  als Randereignisse der vorliegenden Figuren dokumentiert. Kein Reset.
+- **K-S (Beginn), festgelegt:** Anfangsstille gehört bei bekanntem Takt
+  und Metrum zum rhythmischen Verlauf. Der Anfangszustand P kostet `11`
+  (2 Bit), in den Tabellen weiterhin mit **S+** bezeichnet. Auch der erste
+  spätere Einsatz kostet `10`. Die zuvor gerechnete Variante SU (U bis
+  zum ersten Ton ohne Anfangskosten) ist für diesen Auftrag ausgeschlossen.
 
 Die Tabellen verwenden `M/Δ/A/e`. e ist bei N die nächste Onset-Erwartung,
 bei G zugleich das erwartete nächste Tonende nach K-G. `P:3` bedeutet nur
@@ -134,9 +134,9 @@ Innerhalb eines Pfads bleiben erkannte Änderungen erhalten.
 benannten Annahmen dargestellten Kandidaten; günstigster dargestellter
 K-Wert = Vergleich dieser Pfade. Ein nachgewiesenes Minimum unter vollständig
 festgelegtem Gesamtvertrag liegt noch nicht vor. Insbesondere sind K-A,
-K-G, K-E, K-S und die allgemeine Festschreiberegel nicht bestätigt. Die
-Ungleichung aus dem älteren Orgelvergleich wird in Abschnitt 8 ausdrücklich
-gegen K-G geprüft, statt sie durch zusätzliche Befehle künstlich herzustellen.
+K-P, K-G und die allgemeine Festschreiberegel nicht bestätigt. K-E und K-S
+sind entschieden. Gleiche Summen bei verschiedenen erhaltenen Klangverläufen
+sind zulässig; die ältere strikte Ungleichung ist abgelöst.
 
 ### 3.2 F05.1 – vier Viertel (Foto: 2 Bit)
 
@@ -156,7 +156,8 @@ zusätzlich, obwohl reguläre Fortsetzung bereits alle dortigen Ereignisse
 erhält: nach K-G unnötig, nicht informationsgünstiger. `01` ohne Evidenz
 würde eine erfüllte Viertelerwartung verändern und ist keine durch Ausbleiben
 begründete Alternative. Unter K wird die Untergrenze von einmal `10`
-erreicht; das ist kein Nachweis für noch unbestimmte Abschlusskosten.
+erreicht. Ein zusätzliches `11` allein wegen der Analysegrenze ist
+ausgeschlossen; tatsächliche Ereignisse bei 4 werden dort regulär behandelt.
 
 ### 3.3 F05.2 – Halbe, halbe Pause (Foto: 6 Bit)
 
@@ -235,26 +236,24 @@ Ende `{4}`. Es gibt vor 2 weder einen Ton noch ein kontrolliertes Tonende.
 
 | Fall / Pfad | Zeitpunkt | Verfügbare Evidenz | Erkennung | Vorher | Anweisung | Nachher | Kosten / Summe |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| I/G, S+ | 0 | Beobachteter Anfang ohne Einsatz; Annahme expliziter Initialisierung | r_0 < 2, Politik offen | U/1/0/– | `11` | P/1/0/P:1 | 2 / 2 |
+| I/G, S+ | 0 | Beobachteter Anfang ohne Einsatz; bezahlte Initialisierung festgelegt | r_0 < 2, Politik offen | U/1/0/– | `11` | P/1/0/P:1 | 2 / 2 |
 | I/G, S+ | 1 | Stille setzt sich fort | 1 | P/1/0/P:1 | keine | P/1/0/P:2 | 0 / 2 |
 | I/G, S+ | 2 | Erster Einsatz auf Viertelgitter | 2 | P/1/0/P:2 | `10` | N/1/0/3 | 2 / 4 |
 | I-S+P | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/0/3 | `11` | P/1/0/P:4 | 2 / 6 |
 | I-S+D | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/0/3 | `01` | N/2/0/4 | 2 / 6 |
 | G-S+D | 3 | Erwartetes Ende fehlt, Klang hält | 3 | N/1/0/3 | `01` | N/2/0/4 | 2 / 6 |
-| I/G, SU | 0,1 | Noch kein aktiver Spielmodus, keine Spielerwartung nach SU | jeweiliger Zeitpunkt | U/1/0/– | keine | U/1/0/– | 0 / 0 |
-| I/G, SU | 2 | Erster Einsatz | 2 | U/1/0/– | `10` | N/1/0/3 | 2 / 2 |
-| I-SUP / I-SUD | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/0/3 | `11` / `01` | P/1/0/P:4 bzw. N/2/0/4 | 2 / 4 |
-| G-SUD | 3 | Erwartetes Ende fehlt | 3 | N/1/0/3 | `01` | N/2/0/4 | 2 / 4 |
 
 S+: I `11 10 11` oder `11 10 01`, je 6; G `11 10 01`, 6.
-SU: I `10 11` oder `10 01`, je 4; G `10 01`, 4. SU ist **nicht bestätigt**.
+Die frühere SU-Rechnung (4 Bit ohne bezahlte Anfangspause) ist
+für diesen Auftrag ausgeschlossen: Sie klammert die Anfangsinformation aus.
 G-`11` bei 3 wäre wegen des weiterklingenden Tons unzulässig. Ein `01` nur
 zur Beschreibung der Anfangshalbpause ist nicht begründet: Die Stille bei 1
 ist bereits eine erwartbare P-Fortsetzung, kein neuer Anlass. Mit Δ=1
 kann der erste Ton bei 2 ohne Teilungswechsel eingeordnet werden. Die
-Foto-Summe 6 ist unter S+ erreichbar, aber mit anderer Erkenntnisfolge
-und anderer Begründung des Teilungswechsels. Kleinste Entscheidung:
-Muss die beobachtete Anfangsstille initial mit `11` bezahlt werden?
+Foto-Summe 6 ist mit der nun festgelegten bezahlten Anfangspause
+erreichbar, aber mit anderer Erkenntnisfolge und anderer Begründung
+des Teilungswechsels. Die Grundsatzentscheidung über die Anfangskosten
+ist geschlossen; die Erkennungspolitik bleibt gesondert zu bestimmen.
 
 ### 3.7 F05.6 – zwei Viertel, halbe Pause (Foto: 6 Bit)
 
@@ -296,15 +295,13 @@ G: zusätzlich hörbare Enden `{3,4}`; Ende 4 am Rand.
 
 | Fall / Pfad | Zeitpunkt | Verfügbare Evidenz | Erkennung | Vorher | Anweisung | Nachher | Kosten / Summe |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| I/G, S+ | 0 | Anfang ohne Einsatz, explizite Initialisierung als Annahme | r_0 < 2, Politik offen | U/1/0/– | `11` | P/1/0/P:1 | 2 / 2 |
+| I/G, S+ | 0 | Anfang ohne Einsatz; bezahlte Initialisierung festgelegt | r_0 < 2, Politik offen | U/1/0/– | `11` | P/1/0/P:1 | 2 / 2 |
 | I/G, S+ | 1 | Stille setzt sich fort | 1 | P/1/0/P:1 | keine | P/1/0/P:2 | 0 / 2 |
 | I/G, S+ | 2 | Erster Einsatz auf erhaltenem Viertelgitter | 2 | P/1/0/P:2 | `10` | N/1/0/3 | 2 / 4 |
 | I/G, S+ | 3 | Regulärer Einsatz; G auch Ende | 3 | N/1/0/3 | keine | N/1/0/4 | 0 / 4 |
-| I/G, SU | 0,1 | Keine Spielerwartung vor erstem Ton laut SU | jeweiliger Zeitpunkt | U/1/0/– | keine | U/1/0/– | 0 / 0 |
-| I/G, SU | 2 | Erster Einsatz | 2 | U/1/0/– | `10` | N/1/0/3 | 2 / 2 |
-| I/G, SU | 3 | Regulärer Einsatz; G auch Ende | 3 | N/1/0/3 | keine | N/1/0/4 | 0 / 2 |
 
-S+: I=G `11 10`, 4; SU: I=G `10`, 2. Die Fotofolge
+S+: I=G `11 10`, 4. Der frühere SU-Pfad `10` mit 2 Bit ist
+ausgeschlossen, weil er die Anfangspause nicht bezahlt. Die Fotofolge
 `01 11 00 10` enthält zwei Teilungswechsel, deren bloße Begründung durch
 die notierte Anfangshalbpause unzulässig ist. Eine tatsächlich beobachtete
 zusätzliche Evidenz für diese Wechsel liegt hier nicht vor. Würde man
@@ -321,9 +318,9 @@ Zahlung des ersten Einsatzes; kostenlose Reaktivierung ist keine Alternative.
 | F05.2 | 6 | `10 11` = 4 | `10 01 11` = 6 |
 | F05.3 | 6 | `10 01 00` / `10 11 10` = 6 | `10 01 00` = 6 |
 | F05.4 | 4 | `10 11` / `10 01` = 4 | `10 01` = 4 |
-| F05.5 | 6 | S+: `11 10 11` / `11 10 01` = 6; SU: `10 11` / `10 01` = 4 | S+: `11 10 01` = 6; SU: `10 01` = 4 |
+| F05.5 | 6 | `11 10 11` / `11 10 01` = 6 | `11 10 01` = 6 |
 | F05.6 | 6 | `10 11` / `10 01` = 4 (zweiter Pfad ankerabhängig) | `10 11` = 4 |
-| F05.7 | 8 | S+: `11 10` = 4; SU: `10` = 2 | S+: `11 10` = 4; SU: `10` = 2 |
+| F05.7 | 8 | `11 10` = 4 | `11 10` = 4 |
 
 Alle Zahlen sind Kandidatenkosten bzw. günstigste Werte **im dargestellten
 Pfadvergleich unter K**. Die Spalte „nachgewiesenes Minimum unter vollständig
@@ -333,9 +330,9 @@ Erkennungsentscheidungen und Endbedingungen müssen dafür feststehen.
 
 Fotoabweichungen: F05.2.I 4 statt 6, weil der Impuls keine gehaltene Halbe
 vorschreibt; F05.6.I/G 4 statt 6 ohne notationsbedingtes `01`;
-F05.7.I/G unter S+ 4 statt 8 ohne beide Pausenteilungswechsel. Bei SU
-entfallen in F05.5 und F05.7 zusätzlich die initialen 2 Bit; das ist eine
-**unbestätigte Variantenrechnung**, keine beschlossene Verbilligung.
+F05.7.I/G 4 statt 8 ohne beide Pausenteilungswechsel. Anfangspausen
+werden ausdrücklich bezahlt; die früher betrachtete SU-Verbilligung
+ist kein zulässiges Ergebnis dieses Auftrags.
 Gleiche Summen wie auf dem Foto belegen keine gleiche Erkennungsreihenfolge.
 
 
@@ -413,7 +410,7 @@ erzwingen. Die genaue günstigste Hörrechnung ist noch zu bestimmen.
 | Prüffall | Klangbedingung | Zu entscheidende bzw. zu bewahrende Eigenschaft |
 | --- | --- | --- |
 | Längeres Ausbleiben | I; in G als eigener Fall mit explizitem Tonende | Mit A=0 und Start Δ=1 wären neue Erwartungen nach je einem `01` bei 2,4,8… denkbar, mit anderem Anker andere Zeiten. Nicht bei jedem ursprünglichen Viertelschlag automatisch `01` zählen. |
-| Halbe vs. Viertel plus Viertelpause | G | Gleiches Onset, hörbares Ende bei 1 statt 2; darf nicht äquivalent normalisiert werden. Qualitative Ungleichung festgelegt, genaue Kosten brauchen D04. |
+| Halbe vs. Viertel plus Viertelpause | G | Gleiches Onset, hörbares Ende bei 1 statt 2; darf nicht äquivalent normalisiert werden. Verschiedene Tonenden und Erklärungen erhalten; gleiche Summen sind zulässig. |
 | Halbe vs. Viertel plus Viertelpause | I | Bei gleichen Impulsen gleiche Bewertung; keine allein grafisch begründete Pause. |
 | Bindung über die Taktgrenze | G | Klang hält über die Grenze; kein neuer Einsatz aus bloßem Taktstrich. Zustand nicht automatisch zurücksetzen. |
 | Neue Taktgrenze kurz vor einer Ausbleibefrist | I | Abschluss und zeitliche Erkennung dürfen sich nicht widersprechen. |
@@ -440,7 +437,8 @@ F05.6.I und F05.6.G werden je mit halber Pause bzw. zwei Viertelpausen in
 entsteht durch die grafische Grenze bei 3. P setzt sich unverändert fort:
 `10 11`, Kandidatenkosten 4 in beiden Schreibweisen. Gleiches gilt für
 F05.7.I/G mit halber Pause bzw. zwei Viertelpausen in `[0,2)`: unter S+
-`11 10`, 4; unter SU `10`, 2. Ein `01` und dessen spätere Rücknahme `00`
+`11 10`, 4. SU ist wegen der unbezahlten Anfangsinformation ausgeschlossen.
+Ein `01` und dessen spätere Rücknahme `00`
 nur zur Darstellung der halben Pause sind hier ausgeschlossen.
 
 ### 7.2 Halbe gegen Viertel plus Viertelpause
@@ -450,30 +448,21 @@ Pause `[1,2)`. Gleicher bekannter Viertelbezug, erster Einsatz bei 0.
 
 - **I:** H und QP erzeugen denselben kurzen Impuls bei 0. Bei 1 fehlt in
   beiden Fällen der erwartete nächste Einsatz. Kandidaten `10 11` und
-  `10 01` kosten je 4 vor möglichem Abschluss. Die Notation allein darf
+  `10 01` kosten je 4 für den Verlauf im Fenster. Die Notation allein darf
   keinen anderen Wert erzeugen.
 - **G-H:** Ton hält bis 2. Bei 1 fehlt das erwartete Offset, `01` ergibt
   `10 01` = 4. `11` bei 1 wäre wegen des klingenden Tons unzulässig.
 - **G-QP:** Ton endet hörbar bei 1. `11` erklärt dies und die folgende Pause:
   `10 11` = 4. `01` allein würde das Ende nicht realisieren und ist unzulässig.
 
-**Konflikt K-G gegen eine frühere Festlegung:** Der Vertrag enthält die
-qualitative Forderung `I(G-QP) > I(G-H)`. K-G liefert dagegen vor Abschluss
-4 und 4, trotz verschiedener Tonenden und unterschiedlicher Zustände.
-Dies ist nicht bloß eine fehlende Minimalitätsprüfung: Zwei direkt
-begründete gleich teure Pfade zeigen, dass diese Übergangsannahmen allein
-keine strikte Ungleichung herleiten. Hörbar verschieden bedeutet notwendig
-getrennte Ereignisrepräsentation, aber mathematisch nicht automatisch
-verschiedene skalare Kosten.
-
-**Unbestätigter Vorschlag:** Die beiden Ereignisverläufe und Erklärungen
-müssen verschieden bleiben; ob auch ihre Summen strikt verschieden sein
-müssen, ist ausdrücklich zu entscheiden. Die ältere Ungleichung wird hier
-nicht aufgehoben. Falls sie beibehalten wird, muss eine fachliche
-Erwartungs-/Übergangsregel den Unterschied tragen. Eine nur zur gewünschten
-Rangfolge erfundene Gebühr oder ein unbegründetes zusätzliches `01` ist
-keine Lösung. Bis zur Entscheidung sind die G-Kosten Ergebnisse des
-benannten K-Vorschlags, keine vollständig abgenommenen Modellwerte.
+**Entschieden – gleiche Summen zulässig:** Die frühere Forderung
+`I(G-QP) > I(G-H)` ist durch die Entscheidung des Projektinhabers abgelöst.
+H und QP bleiben durch das hörbare Ende und `10 01` bzw. `10 11`
+unterscheidbar, obwohl beide hier zwei Anweisungen und damit 4 Bit benötigen.
+Hörbare Verschiedenheit verlangt keine unterschiedliche Anweisungsanzahl.
+Es werden keine Zusatzkosten zur Herstellung einer strikten Rangfolge
+angesetzt. Der noch ausstehende allgemeine Minimalitätsnachweis ist davon
+unabhängig; die verschiedenen Tonenden dürfen weiterhin nicht verschwinden.
 
 ### 7.3 Anker und kausale Vergangenheit
 
@@ -521,52 +510,40 @@ A=0, `10` bei 0, fehlendes erwartetes Offset bei 1 → `01`, danach Erwartung
 Damit besteht der K-Vorschlag die konkrete Anker-/Schrittprüfung. Eine
 allgemeine kausale Auswahlregel ist dadurch noch nicht bewiesen.
 
-### 8.2 Fenstergrenze als tatsächliche Zahlenvariante
+### 8.2 Analysegrenze: kein musikalischer Änderungsanlass
 
-K-E hält alle Randenden als Daten fest und gibt die Kosten vor einer
-zusätzlichen Abschlussanweisung an. Die Alternative **E-P** wäre ein
-**anderer, unbestätigter Auftrag**: Bei 4 muss auch der aktive N-Zustand
-in P überführt und der betreffende `11`-Befehl mitgezählt werden; bereits
-P bleibt ohne neuen Befehl P. Dies ist eine konkrete Operation, keine
-pauschale Abschlussgebühr. E-P wird nicht stillschweigend vorausgesetzt.
+**Festgelegt:** Kein zusätzliches `11` allein wegen des Fensterendes.
+Der Zustand wird in einer fortlaufenden Analyse weitergeführt. Tatsächliche
+Ereignisse an der Grenze werden dort regulär ausgewertet. Für F05.1
+bleibt die Rechnung für `[0,4)` daher `10` = 2 Bit; aus der bloßen Grenze
+wird kein Pfad `10 11` = 4 Bit.
 
-| Fall | K-Wert I/G unter S+ | Falls E-P zusätzlich verlangt wird: I/G |
+Ein tatsächliches G-Tonende bei 4 darf dennoch einen regulären Zustandswechsel
+begründen, falls der Klang dort endet und kein nahtloser Neuanschlag folgt.
+Ob und welche Anweisung erforderlich ist, folgt der Ereignis- und
+Übergangsregel bei 4, nicht der Wahl des Analyseausschnitts. Bei `[0,4)`
+und anschließender Fortsetzung ab 4 wird dieses Ereignis an 4 ausgewertet,
+mit dem vorherigen Zustand als Eingang. Ohne Fortsetzungsdaten wird weder
+Stille noch ein weiterer Einsatz erfunden.
+
+Die zuvor gerechnete Variante E-P (am Ende stets P herstellen und bezahlen)
+ist damit als allgemeine Fensterabschlussregel ausgeschlossen. Sie kann
+nur einen ausdrücklich zusätzlich verlangten musikalischen Stopp beschreiben.
+Auch SU ist ausgeschlossen: Anfangsstille bei bekanntem Takt und Metrum
+gehört zum Auftrag und wird mit `11` bezahlt. Beide ausgeschlossenen
+Varianten werden nicht mehr in den aktiven Ergebnistabellen geführt.
+
+## 9. Entschiedene Fragen und verbleibender Regelbedarf
+
+| Frage | Entscheidung des Projektinhabers | Folge für F05 |
 | --- | --- | --- |
-| F05.1 | 2 / 2 | 4 / 4 |
-| F05.2 | 4 / 6 | 4 / 6 (günstigster dargestellter Pfad endet bereits in P) |
-| F05.3 | 6 / 6 | 8 / 8 |
-| F05.4 | 4 / 4 | 4 / 6 (I-P gewinnt gegen den N-Endpfad) |
-| F05.5 | 6 / 6 | 6 / 8 (I-P endet bereits in P) |
-| F05.6 | 4 / 4 | 4 / 4 (P-Endpfade) |
-| F05.7 | 4 / 4 | 6 / 6 |
+| Anfangspause | `11` bezahlen; Takt und Metrum stehen fest. | F05.5 beginnt mit 2 Bit Anfangsinformation; F05.7 ebenso. SU entfällt. |
+| Verschiedene Klangverläufe, gleiche Summe | Gleiche Summen zulassen; Ereignisse und Befehle bleiben unterscheidbar. | G-H `10 01` und G-QP `10 11` dürfen beide 4 Bit kosten. Frühere strikte Ungleichung abgelöst. |
+| Abschluss am Fensterende | Kein `11` allein wegen der Grenze; Zustand weiterführen, tatsächliche Grenzereignisse regulär auswerten. | Kein pauschaler Aufschlag auf die Ergebnisse für `[0,4)`. E-P als allgemeine Abschlussregel entfällt. |
 
-Bei SU liegen F05.5 und F05.7 weiterhin je 2 Bit unter S+. E-P würde auch
-das bestätigte Viertelbeispiel von 2 auf 4 für den erweiterten Gesamtauftrag
-ändern. Vorschlag: Vorerst K-E, Randereignisse gesondert berichten und keinen
-zusätzlichen Auftrag zum Pausenspielen am Taktende unterstellen. Die Auswahl
-ändert den Endzustand nie kostenlos: K-E lässt ihn als Analysezustand stehen,
-E-P weist seine Änderung und Kosten aus. Ein realer hörbarer Abschluss darf
-in beiden Varianten nicht aus der musikalischen Ereignisliste verschwinden.
-
-## 9. Drei priorisierte Entscheidungen
-
-1. **Initialisierung der Anfangspause (F05.7):** S+ (`11 10`, 4 Bit) oder
-   SU (U bis 2, dann `10`, 2 Bit)? Vorschlag S+: Anfangsstille als
-   ausdrücklich gesetzten Spielzustand bezahlen, ohne ihre notierte
-   Gliederung zu codieren. Auch F05.5 unterscheidet sich dadurch um 2 Bit.
-2. **Gehaltener Ton und strikte Rangfolge (G-H/G-QP in Abschnitt 7.2):**
-   Dürfen verschiedene hörbare Verläufe unterschiedliche Erklärungen,
-   aber dieselbe Summe 4 haben? Vorschlag: ja, bei vollständig erhaltener
-   Ereignisdarstellung. Falls die bisherige strikte Ungleichung verbindlich
-   bleiben soll, fehlt eine begründete Übergangsregel; keine Zusatzkosten
-   allein zum Erzwingen der Ungleichung einführen.
-3. **Bezahlter Abschluss (F05.1):** Endet der Kostenauftrag vor einer
-   zusätzlichen P-Anweisung (2 Bit unter K-E), oder soll `11` bei 4 zum
-   Gesamtauftrag gehören (4 unter E-P)? Vorschlag K-E, mit erhaltenem
-   Randende und separat ausgewiesenem Endzustand. Dies entscheidet auch,
-   welche derzeit gleich teuren Pfade am Fensterende gleich günstig bleiben.
-
-Die Vorschläge sind unbestätigt. Weitere technische Planung folgt hieraus
-noch nicht. Die allgemeine Anker-/Erkennungs- und Festschreibepolitik bleibt
-im Vertrag als eigene Modellarbeit sichtbar; sie wird nicht durch diese
-sieben endlichen Rechnungen als erledigt erklärt.
+Diese Fragen werden nicht erneut als offene Grundsatzfragen gestellt.
+Weiter offen bleiben K-A, K-P, die noch unbestätigten Teile von K-G,
+die genaue Erkennungspolitik und die Auswahl/Festschreibung konkurrierender
+Interpretationen. Insbesondere bestimmt das Bezahlen der Anfangspause
+noch keine Wahrnehmungslatenz. Diese Punkte werden durch die Entscheidungen
+nicht unbemerkt ergänzt; ein Implementierungsplan folgt hieraus noch nicht.
