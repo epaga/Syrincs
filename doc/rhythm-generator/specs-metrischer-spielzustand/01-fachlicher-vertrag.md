@@ -1,0 +1,273 @@
+# Fachlicher Vertrag und Entscheidungsvorschläge
+
+Status und Herkunft: [README](README.md). Kennungen in Klammern verweisen
+auf den übergebenen Entwurf. Sämtliche nachfolgend als Vorschlag benannten
+Regeln sind bis zur ausdrücklichen Entscheidung unverbindlich.
+
+## 1. Ziel und bekannte Bedingungen
+
+**Festgelegt (Z01–Z03):** Beschrieben werden soll rhythmisches Hören;
+praktisches Hauptziel ist Musikgenerierung. Ein bereits etablierter Beat
+bzw. ein Metrum ist gegeben, seine Erkennung ist nicht Teil des Kerns.
+Regeln wirken fort; Änderungen und ausbleibende erwartete Einsätze tragen
+Information. Spätere Ereignisse dürfen bereits entstandene Information
+nicht einfach löschen. Praktische Erprobung benötigt keine vorangehende
+eigene empirische Studie.
+
+**Folgerung:** Der feste metrische Bezug und der veränderliche Spielabstand
+sind zu unterscheiden. Eine Änderung der Ereignisrate darf nicht unbemerkt
+den vorausgesetzten Beat oder die Taktgrenzen ändern. Das entspricht auch
+der Unterscheidung von Oberfläche und metrischer Fortsetzung bei London.
+
+**Festgelegt (E01–E04, H01–H04):** Symbolische Musik ist zulässig. Unterschiedliche
+Notation allein begründet keine unterschiedlichen Werte. Hörbar gleiche
+Realisierungen erhalten die sparsamere Interpretation. Ein tatsächlich
+hörbares Tonende darf dabei nicht entfernt werden. Für ein kurz ausklingendes
+Instrument können Halbe und Viertel plus Viertelpause äquivalent sein;
+für einen gehaltenen Orgelton mit hörbarer Unterbrechung sind sie es nicht.
+Für Letzteren gilt die qualitative Erwartung: Viertel plus Pause ist
+informationsreicher als durchgehaltene Halbe.
+
+**Erforderliche Ausdrucksfähigkeit (E02 als Folgerung):** Einsätze, Dauern,
+Pausen, Bindungen ohne Neuanschlag, Taktgrenzen, Bezugspuls und Phase,
+binäre und ternäre Teilung sowie relevante Tempo- und Klangbedingungen.
+Notation, klingende Realisierung und Modellinterpretation werden getrennt
+aufbewahrt. Ein `o` allein kann diese Unterschiede nicht repräsentieren.
+
+**Vorschlag V01:** Erste Versuche sind einstimmig, mit gleichem Ereignistyp
+und expliziter Klangannahme. Mehrstimmigkeit wird zunächst als nicht
+unterstützt gemeldet; eine allgemeine Zusammenfassung mehrerer Stimmen
+wäre eine neue Entscheidung. Als Klangannahmen werden vorläufig beschrieben:
+
+| Annahme | Was als Evidenz verwendet werden darf |
+| --- | --- |
+| Kurzer Impulsklang ohne wirksame notierte Abschaltung | Einsätze; instrumenttypisches Ausklingen erzeugt keinen automatischen Pausenbefehl. Notierte Dauern nur soweit sie die Realisierung ändern. |
+| Gehaltener Klang mit wirksamer Abschaltung | Einsätze und kontrollierte hörbare Tonenden; Bindung verlängert den Klang ohne neuen Einsatz. |
+
+Dies sind Prüfbedingungen, keine akustisch universellen Instrumentklassen.
+Ein gedämpfter Schlag kann ein wirksames Tonende besitzen. Beim Impulsklang
+ist natürliche Abnahme hörbar, aber nicht automatisch eine neue musikalische
+Anweisung. Release, Hall, Tempo und Artikulation können die Äquivalenz ändern.
+Bei fehlender Annahme: vorgeschlagen ist ein unvollständiger Auftrag ohne
+eindeutigen Zahlenwert oder ausdrücklich getrennte Szenarien. Kein Default
+„Bongo“ oder „Orgel“ und keine erfundene allgemeine Abschaltschwelle.
+
+**Offen:** Ob Note-Off einen Pausenzustand immer sofort auslöst; welche
+Tonlänge beim Noten-Spielzustand erwartet wird; wie ein erneuter Anschlag
+bei weiterhin klingendem Ton behandelt wird. Diese Regeln sind für das
+Orgelbeispiel entscheidend, auch wenn ein Format Dauern vollständig liefert.
+
+## 2. Wörterbuch und Zustand
+
+**Festgelegt (W01–W05):** Zwei musikalische Zustandskomponenten wirken fort:
+Noten/Pausen spielen und zeitlicher Abstand Δ. Anfangsabstand ist relativ
+zum vorausgesetzten Beat bestimmt, in den Beispielen eine Viertel.
+Andere Beat-Werte müssen möglich sein. Erster Einsatz kostet immer `10`.
+
+| Code | Einheitliche Bezeichnung | Wirkung | Kosten |
+| --- | --- | --- | ---: |
+| `00` | Teilung verstärken | Δ → Δ/2 | 2 Bit |
+| `01` | Teilung verringern | Δ → 2Δ | 2 Bit |
+| `10` | Noten spielen | Noten-Spielzustand aktivieren | 2 Bit |
+| `11` | Pausen spielen | Pausen-Spielzustand aktivieren | 2 Bit |
+
+Vier Viertel benötigen unter Viertelabstand nur einmal `10`. Zwei
+Verstärkungen sind zwei Anweisungen: Halbe → Viertel → Achtel kostet 4 Bit.
+Der Playing-Zustand des Bestands ist keine fertige Definition dieses Zustands.
+
+**Vorschlag V02:** Für die fachliche Erklärung wird ein Zustand als
+`(Spielmodus, Δ, Anker A, nächste Erwartung e, Wörterbuch W)` dargestellt.
+Der konstante metrische Rahmen steht daneben. Ein noch nicht initialisierter
+Spielmodus ist von „Pausen spielen“ zu unterscheiden. Dies legt keine
+Java-Typen oder dritte musikalische Zustandsebene fest.
+
+**Vorschlag V03, nur für die Beispielrechnung:** Δ ist eine positive rationale
+Anzahl gegebener Beats. Erwartungen liegen auf `A + k·Δ`. Nach einer
+Änderung wird nur die gegenwärtige/neue Zukunft geprüft. Eine Verfeinerung
+erfindet keine nachträglich ausgebliebenen Einsätze an neu eingeführten
+früheren Rasterpunkten. Eine Erkennung bei Zeit r darf sich auf eine frühere
+musikalische Stelle b beziehen, verändert aber nicht das damals verfügbare
+Wissen. **Inzwischen bestätigt für den Punktierungsfall:** Der erste
+Einsatz bei 0 bleibt Anker. Nach `01` gilt Δ=2 und die nächste Erwartung
+liegt bei 2. Der Einsatz bei 3/2 führt durch `00 00` zu Δ=1/2, ohne den
+Anker zu verschieben. Diese Bestätigung legt noch keine allgemeine
+Ankerregel für andere Figuren oder Taktübergänge fest.
+
+**Offen (W04/W06):** Anfangspause, Vorgeschichte, neuer Analysebeginn,
+Ankerauswahl und Phase außerhalb des bestätigten Punktierungsfalls.
+Insbesondere darf eine vorhandene Vorgeschichte
+die bestätigte Zahlung des ersten Einsatzes nicht still aufheben.
+
+### Präzisierung des Projektinhabers: Halbe und Analysebeispiele
+
+**Festgelegt, Nachtrag vom 2. November 2026:** Das geteilte Metrum ist als
+gemeinsamer Bezugsrahmen vorausgesetzt. Nach dem ersten Ton/Schlag stehen
+die Viertelebene (bei entsprechendem Takt) und „Noten spielen“ fest.
+Eine Halbe wird daran erkannt, dass auf ihren Onset mit Beginn der nächsten
+Viertel kein Offset folgt. In diesem Augenblick muss die Höranalyse die
+Teilung mit `01` verringern. Dafür ist kein Wissen um die vollständige
+Notendauer beim ersten Einsatz nötig.
+
+Die notierten Bitwerte sind vorrangig **Analysebeispiele**, nicht bloß
+Erzeugungskosten. Die zuvor vorgeschlagene Trennung als mögliche Erklärung
+abweichender Hörwerte beantwortet diesen Fall nicht und wird dafür
+zurückgenommen. Die räumliche Codeanordnung auf dem Foto legt weiterhin
+nicht automatisch den Erkennungszeitpunkt jeder Anweisung fest.
+
+**Folgerung:** Beim gehaltenen Ton darf die Auswertung nicht ausschließlich
+auf einen fehlenden neuen Onset prüfen. Im Halbenbeispiel ist ausdrücklich
+das ausbleibende Offset am erwarteten Viertelende entscheidend. Die
+Übertragung dieser Regel auf kurz ausklingende Schläge sowie eine mögliche
+Toleranz bei realem Spiel bleibt gesondert zu klären; die Festlegung selbst
+wird nicht durch eine frei angenommene Frist ersetzt.
+
+## 3. Ereignis, Erwartung und Erkennung
+
+**Festgelegt (T01–T06):** Ereigniszeit, erwartete Zeit, Erkennungszeit,
+musikalischer Bezugspunkt und technischer Anweisungszeitpunkt unterscheiden.
+Ein zusätzlicher Einsatz liefert mit Auftreten Evidenz für feinere Teilung.
+Ausbleiben benötigt eine Toleranzpolitik. Hörbares Tonende ist ein eigenes
+Ereignis. Eine symbolische Datei verleiht dem Hörmodell kein Zukunftswissen.
+Technischer Vorlauf des Generators verursacht keine zusätzlichen Bitkosten.
+
+**Vorschlag V04:** Jede Änderung dokumentiert Anlass, diese Zeiten,
+Vorher-/Nachherzustand, Wörterbuch, Kosten und Begründung. Für Ausbleiben
+zusätzlich erwarteten Ereignistyp und Zuordnungsfenster. Erwartet werden
+muss ein bestimmtes Ereignis: ein neuer Anschlag, ein Tonende oder eine
+Pausenfortführung sind nicht austauschbar.
+
+**Vorschlag V05:** Trennung von Ereignistoleranz und Ausbleibefrist,
+zunächst konfigurierbar mit offener Herkunft. Die
+[Literaturauswertung](03-literatur-und-erkennung.md) liefert keine allgemeine
+Zahl. Die Beispieltabellen setzen symbolisch
+kleine Fristen voraus, damit relevante Entscheidungen nacheinander
+liegen. Das sind bedingte Rechnungen, keine empirischen Schwellen.
+
+**Offen:** Wenn Tonende und eine Ausbleibefrist zusammentreffen, dürfen sie
+nicht durch zwei unabhängig implementierte Regeln unbeabsichtigt doppelt
+bezahlt werden. Zu entscheiden ist, ob `11` die fehlende Reartikulation
+bereits erklärt oder daneben ein `01` erforderlich ist. Gleichzeitige
+Anweisungen brauchen eine definierte Reihenfolge, weil sie andere Zustände
+und Erwartungen erzeugen können.
+
+**Neu sichtbar gewordene Lücke – Analyseende:** Nach dem letzten Ereignis
+fehlen sonst unbegrenzt weitere erwartete Einsätze. **Vorschlag V06:** Ein
+explizites Beobachtungsfenster besitzt einen bekannten Endpunkt. Erwartungen
+am Endpunkt oder danach werden nicht als Auslassungen gewertet. Fristen
+innerhalb des Fensters werden ausgewertet; nicht abgeschlossene Fristen
+am Rand bleiben als solche sichtbar. Ob ein hörbares Enden genau am Rand
+als Abschlussereignis mitzählt, ist gesondert zu entscheiden. Endliche
+Partitur, Ausschnitt und weiterlaufende Wiedergabe sind verschiedene
+Bedingungen, keine automatisch gleichen Enden.
+
+## 4. Minimum ohne Löschung der Vergangenheit
+
+**Festgelegt (M01–M05):** Sparsamkeit gilt zwischen hörbar gleichwertigen
+Interpretationen. Hörbare Ereignisse bleiben erhalten; erkannte
+Ausbleibeinformation ebenfalls. Spätere Korrektur ist möglich.
+Mehrdeutigkeit soll mit dem Beginn des nächsten Takts abgeschlossen werden.
+Letzteres ist eine Modellentscheidung, kein nachgewiesenes Hörgesetz.
+
+**Vorschlag V07 – festgeschriebene Erkenntnisse, offene Interpretation:**
+
+1. Zu jedem Zeitpunkt werden ausschließlich bis dahin verfügbare Evidenz
+   und bekannte Bedingungen verwendet. Spekulative Erklärungen werden
+   ausdrücklich als solche geführt; sie erzeugen noch keine festen Kosten.
+2. Sobald die festgelegte Erkennungspolitik eine Änderung entscheidet,
+   werden Anlass, gewählte Anweisungen und deren Kosten festgeschrieben.
+   Zulässige Fortsetzungen müssen diese Entscheidungshistorie übernehmen.
+3. Spätere Evidenz kann neue Änderungsanweisungen hinzufügen. Sie ersetzt
+   keinen bereits bezahlten Befehl durch eine billigere Vorgeschichte.
+4. Innerhalb der noch unentschiedenen Interpretationen dürfen nur Varianten
+   verglichen werden, die dieselben festgeschriebenen Erkenntnisse und alle
+   hörbaren Ereignisse erhalten. Gewählt wird die günstigste zulässige
+   Fortsetzung. Wann genau etwas festgeschrieben wird, braucht D03.
+5. Am Taktabschluss wird unter diesen Bedingungen entschieden; bei Gleichstand
+   bleiben Gleichwertigkeit und Alternativen sichtbar. Ein deterministischer
+   Vertreter kann technisch gewählt werden. Abschluss bedeutet weder
+   psychologische Eindeutigkeit noch Reset von Spielmodus, Δ oder Phase.
+
+**Grenze dieses Vorschlags:** Ein bloßer Minimumvergleich vollständiger
+Pfade mit unterschiedlichen früheren Erwartungen genügt nicht. Er könnte
+nachträglich gerade den Pfad auswählen, der den ausgebliebenen Viertel-
+Einsatz nie erwartet hatte. Es muss vorab feststehen, welche Erwartungen
+verbindlich waren und wann die Erkennung sie geändert hat. Eine nur lokal
+billigste Operation ist ebenso wenig bereits festgelegt. V07 ist ein
+Entscheidungsrahmen, noch kein vollständiger Auswahlalgorithmus.
+
+**Offen:** Was geschieht, wenn am Taktende keine Variante alle Bedingungen
+erfüllt? Vorgeschlagen ist ein erklärtes nicht bewertbares Ergebnis statt
+erfundener Anweisungen. Eine erst nach der Grenze ablaufende Frist kann
+nicht zugleich kausal vollständig und bereits endgültig abgeschlossen sein.
+Daher muss „Taktabschluss“ zwischen musikalischer Grenze und späterem
+Auswertungsabschluss unterscheiden. Auch das erfordert eine Entscheidung.
+
+## 5. Triolen und Kosten
+
+**Festgelegt (R01/R02/R06):** Ab Erkennen einer Dreiteilung gilt vorübergehend
+ein erweitertes Wörterbuch mit 3 Bit je Anweisung. Frühere Kosten bleiben
+bei 2 Bit. Im folgenden Takt gilt wieder das 2-Bit-Grundwörterbuch;
+ein Reset des ganzen musikalischen Zustands folgt daraus nicht.
+
+**Vorschläge (R03/R04):** Zwei weitere Operationen Δ/3 und 3Δ; sechs
+gleich lange 3-Bit-Wörter, konkrete Codes noch offen. Aktivierende Anweisung
+bereits 3 Bit, ohne gesonderte Wechselkosten. Beide Vorschläge bedürfen
+der Bestätigung. Noch keine tatsächliche adaptive Huffman-Codierung.
+
+**Offen:** Hörseitige Erkennung, Dauer des erweiterten Wörterbuchs,
+ternärer Abstand im nächsten Takt, Rückkehr vor Taktende. Insbesondere
+folgt aus einem früheren Einsatz nicht eindeutig „Triole“: Bei Viertelbezug
+könnte ein Ereignis bei 1/3 auch eine feinere binäre Teilung mit zulässiger
+Timingabweichung sein. Die Kandidaten-/Toleranzregel muss diesen Fall
+entscheiden. Die gedruckte Triolenklammer genügt dem Hörmodell nicht.
+Weitere Teilungen bleiben zunächst ausdrücklich nicht spezifiziert.
+
+**Kosten (B01–B04):** Für eine bestimmte Interpretation gilt
+`I = Summe c(a_i, W_i)` mit 2 bzw. 3 Bit nach aktivem Wörterbuch.
+Die Kosten bezeichnen musikalische Anweisungen unter bekannten Bedingungen.
+Zeitzuordnung und Wörterbuchwechsel sind noch kein selbsttragender Bitstrom;
+alle 2-Bit-Wörter sind bereits vergeben. Eine serialisierte Datei und ihre
+Bytezahl sind ein anderer Vertrag. Die vorläufig maßgebliche Darstellung
+ist die erklärte Anweisungsfolge mit Kosten und Zuständen.
+
+## 6. Analyzer, Generator und fachliche Abnahme
+
+**Vorschlag (A01–A05):** Analyse liefert normalisierte Notation, hörbare
+Realisierung unter Klangannahme, Rahmen, Startzustand, Toleranzpolitik,
+Ereignis-/Erwartungsverlauf, Anweisungsprotokoll und kumulierte Kosten.
+Vorläufige Varianten und endgültige Entscheidungen unterscheiden.
+Lokale Profile sind erst nach Wahl ihrer Zeitbasis definiert: Erkennung
+oder musikalischer Bezugspunkt; beide dürfen separat ausgegeben werden.
+Die technische Vorbereitung ist keine solche Profilzeitbasis.
+
+**Folgerung (G01–G04):** Generator verwendet denselben Analyzer. Ein
+Konstruktionspfad mit Zielkosten ist noch kein Erfolg: Die ausgegebene
+Notation und ihre Realisierung müssen unter identischen Bedingungen die
+Zielbewertung erreichen. Konstruktionskosten und Hörwert bleiben bis zum
+Nachweis ihrer Gleichheit getrennt. Notations-/Austauschausgabe ist Ziel,
+Echtzeit perspektivisch; MIDI/OSC sind Ausführungswege. Formatpriorität,
+Suchstrategien, Ziele, Profile, Zufall, Budget und Datenbanknutzung sind offen.
+Keine Übernahme der alten Codesuche oder des alten 128-Slot-Limits.
+
+**Abnahme:** Eine andere Person kann aus Eingabe und benannten Bedingungen
+dieselben Anweisungen, Zustände, Wörterbuchwechsel und Kosten herleiten.
+Softwaretests belegen diese Reproduzierbarkeit, keine psychologische
+Validierung. Bis dahin bleiben Beispielwerte mit ihrer Herkunft markiert.
+
+## 7. Entscheidungen für den nächsten fachlichen Durchgang
+
+| ID | Entscheidung und konkreter Prüfpunkt | Vorschlag / Status |
+| --- | --- | --- |
+| D01 | Bedeutung der Bildwerte und Erkenntnis der Anfangshalben. | Geklärt: Analysebeispiele; nach erstem Einsatz N und Viertelabstand; `01` zu Beginn der zweiten Viertel bei ausbleibendem Offset. Weitere Einzelabläufe bleiben zu prüfen. |
+| D02 | Anker und Phase nach Teilungswechseln; keine rückwirkenden neuen Erwartungen. | Punktierungsfall bestätigt: erster Einsatz bleibt Anker, nach `01` Erwartung bei 2, bei 3/2 zweimal `00` ohne Ankerverschiebung. Allgemeine Regel und Taktübergang noch offen. |
+| D03 | Welche Interpretation wird wann festgeschrieben? Welche Korrektur bleibt kostenpflichtig? | V07; Ausbleibeentscheidung muss vor späterem Einsatz bindend sein. |
+| D04 | Tonende, Dauererwartung und Pause: wann `11`, wann `01`, wann beide? | Zwei explizite Klangannahmen V01; numerische Hörwerte noch offen. |
+| D05 | Ausbleibefrist, konkurrierende Ereignisse, wiederholtes Ausbleiben und Analyseende. | V05/V06; Rand- und Gleichzeitigkeitstests nötig. |
+| D06 | Anfangspause und Taktabschluss einschließlich Fristen jenseits der Grenze. | Keine kostenlose Anfangspause oder automatischer Zustandsreset unterstellt. |
+| D07 | Zusätzliche Triolenoperationen, aktivierende Kosten, Erkennung, Taktwechsel. | R03/R04 bleiben Vorschläge. |
+| D08 | Korrekturen auf Foto 1 und komplexer 22-Bit-Fall. | Beide ersten `01` auf Foto 1 ausdrücklich zu `00` korrigiert. Nur der komplexe 22-Bit-Fall bleibt sicher zu transkribieren. |
+| D09 | Profilzeitbasis, erstes Format, Mehrstimmigkeit, weitere Teilungen, Generatorziele. | Erst nach belastbaren einfachen Ereignisabläufen entscheiden. |
+
+Die noch offenen Teile von D02–D06 sind Voraussetzungen für einen belastbaren Kernplan. D07 kann nur
+bei ausdrücklich begrenzter erster Lieferung nachgelagert werden; Triolen
+bleiben dann als geforderte, noch nicht unterstützte Erweiterung sichtbar.
