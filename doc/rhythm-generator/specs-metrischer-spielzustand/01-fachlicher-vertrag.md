@@ -146,6 +146,34 @@ Ausbleiben benötigt eine Toleranzpolitik. Hörbares Tonende ist ein eigenes
 Ereignis. Eine symbolische Datei verleiht dem Hörmodell kein Zukunftswissen.
 Technischer Vorlauf des Generators verursacht keine zusätzlichen Bitkosten.
 
+**Festgelegt – Ausbleiben als Evidenz, auch unter I:** Das Ausbleiben eines
+aufgrund des geltenden Zustands erwarteten Ereignisses ist selbst relevante
+Evidenz. Es kann insbesondere eine Interpretation als „Pausen spielen“
+(`11`) oder als Verringerung der Teilung (`01`) begründen. Ein hörbares
+Tonende ist **keine notwendige Voraussetzung für `11`**. Diese Regel gilt
+ausdrücklich auch für den idealisierten kurzen Impulsklang: Sein natürliches
+Ausklingen allein löst keinen Pausenbefehl aus, ein ausbleibender erwarteter
+neuer Einsatz kann ihn jedoch begründen.
+
+Unter den mit dem hörbaren Verlauf und den bisherigen Festlegungen
+vereinbaren Interpretationen wird die informationsgünstigste gewählt.
+Weder wird aus jedem Ausbleiben zwingend `11`, noch muss vor `11` stets
+ein `01` ausgeführt werden. Welche Interpretation zulässig und günstiger
+ist, muss anhand des Zustands, der Erwartung und des weiteren zulässigen
+Erkenntnisverlaufs geprüft werden. Eine bloße notierte Pausengliederung
+bleibt als Begründung für zusätzliche Teilung ausgeschlossen.
+
+**Verbindlich zu berücksichtigender Kandidat – F05.6.I:** Bei Viertelbezug
+und Einsätzen bei 0 und 1 aktiviert `10` bei 0 „Noten spielen“; der Einsatz
+bei 1 setzt diesen Zustand fort. Der dadurch bei 2 erwartete Einsatz
+bleibt aus. Diese Evidenz begründet den Kandidaten `11`, ohne dass ein
+hörbares Tonende nötig wäre. Die Folge `10 11` kostet im Grundwörterbuch
+4 Bit und muss im Interpretationsvergleich berücksichtigt werden. Der
+Erkennungszeitpunkt des Ausbleibens folgt der noch zu bestimmenden
+Erkennungspolitik; sein erwarteter Zeitpunkt bleibt 2. Dies ist kein
+vollständiger Minimalitätsnachweis und keine allgemeine Festlegung,
+dass jeder ausbleibende Einsatz als Pause interpretiert werden muss.
+
 **Vorschlag V04:** Jede Änderung dokumentiert Anlass, diese Zeiten,
 Vorher-/Nachherzustand, Wörterbuch, Kosten und Begründung. Für Ausbleiben
 zusätzlich erwarteten Ereignistyp und Zuordnungsfenster. Erwartet werden
@@ -291,7 +319,7 @@ noch fehlen, wird kein exaktes Minimum behauptet.
 | D01 | Bedeutung der Bildwerte und Erkenntnis der Anfangshalben. | Geklärt: fachliche Ausgangsbeispiele; Äquivalenzminimum hat Vorrang. In G nach erstem Einsatz N und Viertelabstand; `01` zu Beginn der zweiten Viertel bei ausbleibendem Offset. |
 | D02 | Anker und Phase nach Teilungswechseln; keine rückwirkenden neuen Erwartungen. | Punktierungsfall bestätigt: erster Einsatz bleibt Anker, nach `01` Erwartung bei 2, bei 3/2 zweimal `00` ohne Ankerverschiebung. Allgemeine Regel und Taktübergang noch offen. |
 | D03 | Welche Interpretation wird wann festgeschrieben? Welche Korrektur bleibt kostenpflichtig? | V07; Ausbleibeentscheidung muss vor späterem Einsatz bindend sein. |
-| D04 | Tonende, Dauererwartung und Pause: wann `11`, wann `01`, wann beide? | I und G für die erste Fassung festgelegt; hörbare Enden erhalten. Pausengliederung allein erzeugt keine Teilung. Genaue Übergangsregeln noch offen. |
+| D04 | Tonende, Dauererwartung und Pause: wann `11`, wann `01`, wann beide? | I und G festgelegt; hörbare Enden erhalten. Ausbleiben ist auch unter I Evidenz für `11` oder `01`; Tonende für `11` nicht notwendig. F05.6.I muss `10 11` berücksichtigen. Allgemeine Auswahl-/Übergangsregeln noch offen. |
 | D05 | Ausbleibefrist, konkurrierende Ereignisse, wiederholtes Ausbleiben und Analyseende. | V05/V06; Rand- und Gleichzeitigkeitstests nötig. |
 | D06 | Anfangspause und Taktabschluss einschließlich Fristen jenseits der Grenze. | Keine kostenlose Anfangspause oder automatischer Zustandsreset unterstellt. |
 | D07 | Zusätzliche Triolenoperationen, aktivierende Kosten, Erkennung, Taktwechsel. | R03/R04 bleiben Vorschläge. |

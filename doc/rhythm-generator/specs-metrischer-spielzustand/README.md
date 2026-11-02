@@ -36,6 +36,14 @@ zunächst **I – kurzer Impulsklang** oder **G – gehaltener Klang mit hörbar
 Abschaltung**. Hörbare Tonenden bleiben erhalten; weitere Artikulationen
 werden später behandelt.
 
+Ausbleiben eines aufgrund des geltenden Zustands erwarteten Ereignisses
+ist selbst relevante Evidenz und kann `11` oder `01` begründen, ausdrücklich
+auch unter I. Ein hörbares Tonende ist für `11` nicht notwendig. Für
+F05.6.I mit Einsätzen bei 0 und 1 ist deshalb `10 11` als Kandidat mit
+4 Bit zu berücksichtigen: `11` wird durch den ausbleibenden erwarteten
+Einsatz bei 2 begründet. Ein vollständiger Minimalitätsnachweis wird damit
+nicht behauptet.
+
 ## Geprüfter Repository-Stand
 
 Gelesener HEAD: `5eed42c610a392bc9da03e82ba34176100392460`, Arbeitsbranch

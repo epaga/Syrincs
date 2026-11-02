@@ -229,7 +229,7 @@ zusammenfallen; daraus folgt noch keine zusätzliche Kostenanweisung.
 | F05.3 | 0,2,3 | 2,3,4 | G: Ablauf in Abschnitt 3. I: fehlender Onset bei 1, nicht fehlendes Offset, ist Gegenstand der Erkennungspolitik. |
 | F05.4 | 0,1,2 | 1,2,4 | G: ausbleibendes Offset bei 3 begründet `01`. I: gleiche Onsets wie drei Viertel plus Viertelpause; beide Schreibweisen müssen gleich bewertet werden. |
 | F05.5 | 2 | 4 | Anfangspause offen. In I gleiche hörbare Folge wie eine Viertel bei 2 mit anschließender Viertelpause; notierte Halbenlänge selbst keine hörbare Evidenz. G: Klang von 2 bis 4 erhalten. |
-| F05.6 | 0,1 | 1,2 | In beiden Fällen keine Teilung allein aufgrund der halben Pause. G: Enden bei 1 und 2 erhalten, Ende bei 2 erklärt den Beginn der anschließenden Stille. |
+| F05.6 | 0,1 | 1,2 | I: `10 11` als Kandidat, begründet durch den ausbleibenden erwarteten Einsatz bei 2; kein Tonende nötig. In beiden Fällen keine Teilung allein aufgrund der halben Pause. G: Enden bei 1 und 2 erhalten. |
 | F05.7 | 2,3 | 3,4 | Die anfängliche halbe Pause erzeugt für sich kein `01`; folglich ist auch kein nur dadurch erforderliches `00` zu erzwingen. Anfangsmodus und anschließende Einsätze müssen erklärt werden. |
 | F03, Foto 1 / 1 | 0,1,3/2,2,5/2,11/4,3,13/4,7/2 | 1,3/2,2,5/2,11/4,3,13/4,7/2,4 | I: Kandidatenrechnung in Abschnitt 5. G: dieselben Onsets, zusätzlich jedes notierte Ende erhalten; keine Übernahme eines I-Werts ohne Prüfung. |
 | F04, Foto 1 / 2 | 0,3/2,2,5/2,11/4,3,13/4,7/2 | 1,2,5/2,11/4,3,13/4,7/2,4 | G: hörbare Lücke von 1 bis 3/2. I: notierte Achtelpause führt kein eigenes Abschaltereignis ein. 12 Bit sind Ausgangswert, nicht in beiden Fällen zu erzwingen. |
@@ -250,6 +250,33 @@ das hörbare Ende und die folgende Stille unter der beschlossenen
 Das `01` lässt sich nicht mit „halbe Pause“ begründen. Dies ist eine
 konkrete Minimalitätsprüfung, noch kein vorweggenommener Nachweis, dass
 4 Bit unter allen noch offenen Übergangs- und Abschlussregeln das Minimum sind.
+
+### F05.6.I: ausbleibender Einsatz begründet den Kandidaten `10 11`
+
+**Klangbedingung I:** Zwei gleiche kurze Impulse bei 0 und 1, keine
+weiteren Einsätze im Fenster `[0,4)`. Natürliche Impulsenden erzeugen keine
+eigenen Abschaltanweisungen. Bezug ist die etablierte Viertel mit Δ=1.
+
+| Bezugspunkt | Evidenz / Erwartung | Erkennung | Zustand vorher → nachher | Kandidatenanweisung / Kosten | Summe |
+| --- | --- | --- | --- | --- | ---: |
+| 0 | Erster Impuls | 0 | `(U,1)→(N,1)`; nächster Einsatz bei 1 erwartet | `10`, 2 Bit | 2 |
+| 1 | Impuls wie erwartet | 1 | `(N,1)→(N,1)`; nächster Einsatz bei 2 erwartet | keine | 2 |
+| 2 | Erwarteter Einsatz bleibt aus | Nach der noch festzulegenden Ausbleibeerkennung, bezogen auf die Erwartung bei 2 | `(N,1)→(P,1)` | `11`, 2 Bit | 4 |
+
+Der Anlass für `11` ist die unerfüllte Erwartung aus dem geltenden Zustand,
+**kein hörbares Tonende** und keine Information aus der gedruckten halben
+Pause. In dieser Interpretation bleibt Δ=1; ein zusätzlicher `01`-Befehl
+wird nicht allein wegen dieser Pausennotation benötigt. Bis zum Fensterende
+folgen keine weiteren Impulse; die Interpretation als „Pausen spielen“
+ist damit als Kandidat zu berücksichtigen.
+
+Auch eine Interpretation mit Verringerung der Teilung kann durch
+Ausbleiben begründet sein. Im Vergleich dürfen nur mit dem hörbaren
+Verlauf und bisherigen Festlegungen vereinbare Interpretationen stehen;
+unter diesen ist die informationsgünstigste zu wählen. Die dargestellten
+4 Bit sind die Kosten des Kandidaten `10 11`, **kein vollständiger
+Minimalitätsnachweis**. Insbesondere werden Ausbleibefrist, allgemeine
+Auswahlregel und Abschlusskosten damit nicht nebenbei festgelegt.
 
 **Daueräquivalenz als direkte Gegenprobe:** In einem gemeinsamen Fenster
 `[0,2)` werden `0:2` und `0:1` mit Pause `[1,2)` verglichen. Unter I ist
