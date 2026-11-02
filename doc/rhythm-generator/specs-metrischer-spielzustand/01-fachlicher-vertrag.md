@@ -28,6 +28,15 @@ für einen gehaltenen Orgelton mit hörbarer Unterbrechung sind sie es nicht.
 Für Letzteren gilt die qualitative Erwartung: Viertel plus Pause ist
 informationsreicher als durchgehaltene Halbe.
 
+**Prüfbefund aus F05, noch zu entscheiden:** Die konkret ausgearbeitete
+Übergangsvariante K-G ergibt im gemeinsamen Fenster `[0,2)` für die Halbe
+`10 01` und für Viertel plus hörbare Pause `10 11`, jeweils 4 Bit vor
+zusätzlichem Abschluss. Die hörbaren Enden bleiben verschieden. Damit ist
+die frühere strikte Ungleichung unter dieser Variante nicht hergeleitet.
+Sie wird weder stillschweigend aufgehoben noch durch erfundene Zusatzbefehle
+erzwungen. [Fallvergleich und Entscheidungsvorschlag](02-bildpruefung-und-ereignisablaeufe.md#72-halbe-gegen-viertel-plus-viertelpause)
+halten diesen Konflikt ausdrücklich offen.
+
 **Erforderliche Ausdrucksfähigkeit (E02 als Folgerung):** Einsätze, Dauern,
 Pausen, Bindungen ohne Neuanschlag, Taktgrenzen, Bezugspuls und Phase,
 binäre und ternäre Teilung sowie relevante Tempo- und Klangbedingungen.
@@ -69,6 +78,13 @@ eindeutigen Zahlenwert oder ausdrücklich getrennte Szenarien. Kein Default
 Tonlänge beim Noten-Spielzustand erwartet wird; wie ein erneuter Anschlag
 bei weiterhin klingendem Ton behandelt wird. Diese Regeln sind für das
 Orgelbeispiel entscheidend, auch wenn ein Format Dauern vollständig liefert.
+
+Die [F05-Rechnungen](02-bildpruefung-und-ereignisablaeufe.md#3-schrittweise-rechnung-f051f057-unter-i-und-g)
+konkretisieren dies als **unbestätigtes Rechenprofil K**, nicht als neue
+Festlegung: P erhält Teilung/Phase, aber erwartet keine neuen Töne; G
+erwartet zunächst ein Ende nach Δ und erlaubt reguläre Reartikulation
+ohne `11 10`. A=0 wird für die sieben Figuren ausdrücklich angenommen.
+Initialisierung der Anfangspause und Abschluss werden in Varianten gerechnet.
 
 ## 2. Wörterbuch und Zustand
 
@@ -223,6 +239,14 @@ rückblickende Kompression.
 
 **Vorschlag V07 – festgeschriebene Erkenntnisse, offene Interpretation:**
 
+**Abgrenzung durch den Fallvergleich:** Ausbleibeevidenz festzuhalten bedeutet
+nicht, ohne Auswahlregel immer sofort `01` festzuschreiben. In F05.3.I
+erklären `10 01 00` und `10 11 10` denselben hörbaren Verlauf mit je 6 Bit;
+beide bezahlen die Änderung bei 1. Die Wahl zwischen solchen noch offenen
+Pfaden muss sichtbar bleiben. Innerhalb eines bereits gewählten Pfads
+werden frühere Kosten nicht durch spätere Evidenz gelöscht. Unter G kann
+dagegen das tatsächliche Weiterklingen den P-Pfad konkret ausschließen.
+
 1. Zu jedem Zeitpunkt werden ausschließlich bis dahin verfügbare Evidenz
    und bekannte Bedingungen verwendet. Spekulative Erklärungen werden
    ausdrücklich als solche geführt; sie erzeugen noch keine festen Kosten.
@@ -318,10 +342,10 @@ noch fehlen, wird kein exaktes Minimum behauptet.
 | --- | --- | --- |
 | D01 | Bedeutung der Bildwerte und Erkenntnis der Anfangshalben. | Geklärt: fachliche Ausgangsbeispiele; Äquivalenzminimum hat Vorrang. In G nach erstem Einsatz N und Viertelabstand; `01` zu Beginn der zweiten Viertel bei ausbleibendem Offset. |
 | D02 | Anker und Phase nach Teilungswechseln; keine rückwirkenden neuen Erwartungen. | Punktierungsfall bestätigt: erster Einsatz bleibt Anker, nach `01` Erwartung bei 2, bei 3/2 zweimal `00` ohne Ankerverschiebung. Allgemeine Regel und Taktübergang noch offen. |
-| D03 | Welche Interpretation wird wann festgeschrieben? Welche Korrektur bleibt kostenpflichtig? | V07; Ausbleibeentscheidung muss vor späterem Einsatz bindend sein. |
+| D03 | Welche Interpretation wird wann festgeschrieben? Welche Korrektur bleibt kostenpflichtig? | V07 und F05.3.I: konkurrierende 6-Bit-Pfade bezahlen dieselbe Ausbleibeevidenz, ohne zwingend dieselben Befehle zu verwenden. Punktierungsfall als Gegenprobe erhalten. |
 | D04 | Tonende, Dauererwartung und Pause: wann `11`, wann `01`, wann beide? | I und G festgelegt; hörbare Enden erhalten. Ausbleiben ist auch unter I Evidenz für `11` oder `01`; Tonende für `11` nicht notwendig. F05.6.I muss `10 11` berücksichtigen. Allgemeine Auswahl-/Übergangsregeln noch offen. |
 | D05 | Ausbleibefrist, konkurrierende Ereignisse, wiederholtes Ausbleiben und Analyseende. | V05/V06; Rand- und Gleichzeitigkeitstests nötig. |
-| D06 | Anfangspause und Taktabschluss einschließlich Fristen jenseits der Grenze. | Keine kostenlose Anfangspause oder automatischer Zustandsreset unterstellt. |
+| D06 | Anfangspause und Taktabschluss einschließlich Fristen jenseits der Grenze. | F05.5/7: S+ (initial `11`) gegen SU (U bis erster Ton), Differenz 2 Bit. K-E gegen ausdrücklichen P-Abschluss E-P mit ausgewiesenen Kosten. Alles unbestätigte Varianten; kein kostenloser Reset. |
 | D07 | Zusätzliche Triolenoperationen, aktivierende Kosten, Erkennung, Taktwechsel. | R03/R04 bleiben Vorschläge. |
 | D08 | Korrekturen auf Foto 1 und komplexer 22-Bit-Fall. | Beide ersten `01` auf Foto 1 ausdrücklich zu `00` korrigiert. Nur der komplexe 22-Bit-Fall bleibt sicher zu transkribieren. |
 | D09 | Profilzeitbasis, erstes Format, Mehrstimmigkeit, weitere Teilungen, Generatorziele. | Erst nach belastbaren einfachen Ereignisabläufen entscheiden. |

@@ -46,6 +46,13 @@ nicht behauptet.
 
 ## Geprüfter Repository-Stand
 
+Aktueller F05-Durchgang: Branch `docs/metrischer-spielzustand-spezifikation`,
+HEAD `835655ee26c40f54b3c7934c5f9e6cf153b559a0`; gegenüber dem genannten
+Ausgangspunkt keine neueren Commits und keine Änderungen an versionierten
+Dateien zu Arbeitsbeginn. Die übrigen unversionierten Fotos und
+`projektanalyse/` bleiben unverändert. Die folgende Codeinventur beschreibt
+weiterhin den historischen Implementierungsstand, nicht neue Produktionslogik.
+
 Gelesener HEAD: `5eed42c610a392bc9da03e82ba34176100392460`, Arbeitsbranch
 `docs/metrischer-spielzustand-spezifikation`. Der vom Entwurf genannte
 Referenzbranch `feat/PROJEKT-verbesserung-rhythmus` steht auf `653cbdb`.
@@ -98,7 +105,29 @@ Diese Korrekturen sichern die Lesung, nicht die Optimalität der Beispielwerte
 unter jeder Klangbedingung. Die Fallmatrix führt beide Klangbedingungen
 und die daraus folgenden Äquivalenzprüfungen getrennt aus.
 
+Die sieben einfachen F05-Figuren sind jetzt in
+[Abschnitt 3 der Ereignisabläufe](02-bildpruefung-und-ereignisablaeufe.md#3-schrittweise-rechnung-f051f057-unter-i-und-g)
+schrittweise unter I und G berechnet, einschließlich konkurrierender `11`-/
+`01`-Pfade. Das dort benannte Rechenprofil K ist ausdrücklich unbestätigt.
+Günstigste dargestellte Kosten vor einem zusätzlichen Abschluss: I/G
+`2/2, 4/6, 6/6, 4/4, 6/6, 4/4, 4/4` für F05.1–F05.7, wenn eine
+Anfangspause mit `11` initialisiert wird. Eine alternativ bis zum ersten
+Ton uninitialisierte Analyse liegt bei F05.5/7 je 2 Bit darunter.
+Dies sind keine nachgewiesenen Minima des noch unvollständigen Vertrags.
+
+Der Durchgang zeigt außerdem einen fachlichen Konflikt: Im G-Vergleich
+Halbe gegen Viertel plus hörbare Pause liefern `10 01` bzw. `10 11`
+zunächst beide 4 Bit. Die ältere Forderung nach strikt höherem Wert
+der Unterbrechung ist mit diesem Übergangsvorschlag nicht hergeleitet und
+bleibt ausdrücklich zur Entscheidung offen. Anfangspause, dieser Konflikt
+und Abschluss sind als drei priorisierte Rückfragen ausgearbeitet.
+
 Geprüft wurden Dokumente, Produktionscode, einschlägige Testquellen,
 beide Fotos und ausgewählte London-Originalscreenshots sowie ergänzende
 Primärquellen. Kein neuer Softwaretestlauf und keine Audio-/DB-Abnahme:
-Diese Änderung fügt ausschließlich fachliche Dokumente hinzu.
+Dieser Durchgang ändert ausschließlich fachliche Dokumente. Zusätzlich
+wurden mit einer temporären Rechenhilfe 25 dargestellte K-Kandidaten
+gegen die notierten Onsets, G-Tonenden und Befehlsummen sowie 21 explizite
+Kostenformeln geprüft. Das prüft die angegebenen Pfade unter K, weder die
+psychologische Gültigkeit der Zusatzannahmen noch vollständige Minimalität.
+Markdown, lokale Linkziele und `git diff --check` wurden geprüft.
