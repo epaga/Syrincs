@@ -88,6 +88,15 @@ Eine quantitative Untersuchung von Abschaltung/Release bleibt offen;
 aus den vorliegenden Befunden wird keine allgemeine Hörbarkeitsschwelle
 oder akustische Simulation abgeleitet.
 
+**Festgelegter erster Umfang:** Die fachlichen Prüffälle verwenden zunächst
+I (idealisierter kurzer Impulsklang) und G (idealisierter gehaltener Klang
+mit hörbarer Abschaltung). Ihre unterschiedlichen Realisierungen sind
+explizite Modellbedingungen, keine neu behaupteten Literaturbefunde.
+Eine quantitative Release-/Artikulationsmodellierung ist für diese zwei
+Idealbedingungen keine Voraussetzung; weitere Artikulationsfälle folgen
+später. Pausengliederung allein ist in keinem der beiden Fälle ein
+hörbares Ereignis oder eine Begründung für Teilungsanweisungen.
+
 **Nachtrag zur Modellentscheidung:** Der Projektinhaber legt für den
 symbolischen Halbenfall fest: Nach dem ersten Einsatz gilt bei bekanntem
 Viertelbezug „Noten spielen“; bleibt zu Beginn der zweiten Viertel das

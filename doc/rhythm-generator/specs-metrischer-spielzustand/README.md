@@ -28,8 +28,13 @@ Defaults dieses neuen Modells.
 Projektinhabers ausgewiesen. **Folgerung** ist eine überprüfbare Ableitung.
 **Vorschlag** ist noch nicht angenommen. **Offen** verlangt eine Entscheidung.
 **Forschungsauftrag** verlangt Untersuchung, ohne ein gewünschtes Ergebnis
-vorwegzunehmen. Ein am Foto gelesener Wert bleibt ein **notierter Wert**;
-das ist keine automatisch bestätigte Höranalyse.
+vorwegzunehmen. Ein am Foto gelesener Wert bleibt ein **fachlicher
+Ausgangswert**. Im Konflikt hat die informationsgünstigste hörbar
+gleichwertige Interpretation Vorrang. Pausengliederungen allein begründen
+keine Teilungsanweisungen. Jeder Prüffall benennt seine Klangbedingung:
+zunächst **I – kurzer Impulsklang** oder **G – gehaltener Klang mit hörbarer
+Abschaltung**. Hörbare Tonenden bleiben erhalten; weitere Artikulationen
+werden später behandelt.
 
 ## Geprüfter Repository-Stand
 
@@ -80,7 +85,10 @@ der erste Einsatz hat bereits „Noten spielen“ bei bekanntem Viertelabstand g
 Weitere Bestätigungen: Im Punktierungsfall bleibt der erste Einsatz der
 Zeitanker, auch nach `01` und `00 00`. Auf Foto 1 ist in beiden Beispielen
 das erste `01` als Schreibfehler zu `00` korrigiert. Die korrigierten
-Analysefolgen lauten `10 00 00 01` (8 Bit) und `10 00 11 10 00 01` (12 Bit).
+Foto-Codefolgen lauten `10 00 00 01` (8 Bit) und `10 00 11 10 00 01` (12 Bit).
+Diese Korrekturen sichern die Lesung, nicht die Optimalität der Beispielwerte
+unter jeder Klangbedingung. Die Fallmatrix führt beide Klangbedingungen
+und die daraus folgenden Äquivalenzprüfungen getrennt aus.
 
 Geprüft wurden Dokumente, Produktionscode, einschlägige Testquellen,
 beide Fotos und ausgewählte London-Originalscreenshots sowie ergänzende

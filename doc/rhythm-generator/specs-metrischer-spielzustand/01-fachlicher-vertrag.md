@@ -34,20 +34,33 @@ binäre und ternäre Teilung sowie relevante Tempo- und Klangbedingungen.
 Notation, klingende Realisierung und Modellinterpretation werden getrennt
 aufbewahrt. Ein `o` allein kann diese Unterschiede nicht repräsentieren.
 
-**Vorschlag V01:** Erste Versuche sind einstimmig, mit gleichem Ereignistyp
-und expliziter Klangannahme. Mehrstimmigkeit wird zunächst als nicht
-unterstützt gemeldet; eine allgemeine Zusammenfassung mehrerer Stimmen
-wäre eine neue Entscheidung. Als Klangannahmen werden vorläufig beschrieben:
+**Festgelegt – Vorrang und erste Klangfälle:** Die handschriftlichen
+Bitwerte sind fachliche Ausgangsbeispiele. Bei einem Konflikt hat die
+informationsgünstigste hörbar gleichwertige Interpretation Vorrang. Die
+Fotozahl darf weder zusätzliche Anweisungen erzwingen noch die Entfernung
+eines hörbaren Tonendes rechtfertigen. Notierte Pausengliederungen begründen
+für sich **keine Teilungsanweisungen**, auch keine spätere Rücknahme einer
+nur aufgrund der Pausennotation eingeführten Teilung.
+
+Jeder Prüffall muss seine Klangbedingungen benennen. Für die erste Fassung
+werden ausschließlich die beiden idealisierten Fälle in der folgenden
+Tabelle ausgearbeitet; weitere Artikulationsfälle folgen später.
+
+**Vorschlag V01, verbleibender Umfang:** Erste Versuche sind einstimmig,
+mit gleichem Ereignistyp. Mehrstimmigkeit und eine Zusammenfassung mehrerer
+Stimmen benötigen eine eigene Entscheidung.
 
 | Annahme | Was als Evidenz verwendet werden darf |
 | --- | --- |
-| Kurzer Impulsklang ohne wirksame notierte Abschaltung | Einsätze; instrumenttypisches Ausklingen erzeugt keinen automatischen Pausenbefehl. Notierte Dauern nur soweit sie die Realisierung ändern. |
-| Gehaltener Klang mit wirksamer Abschaltung | Einsätze und kontrollierte hörbare Tonenden; Bindung verlängert den Klang ohne neuen Einsatz. |
+| **I – Kurzer Impulsklang** | Jeder Anschlag erzeugt einen gleichen kurzen Impuls. Notierte Dauer und Pausengliederung verändern seine Hüllkurve nicht. Natürliches Ausklingen erzeugt keinen automatischen Pausenbefehl; die für die Bewertung variablen Ereignisse sind die Onsets. |
+| **G – Gehaltener Klang mit hörbarer Abschaltung** | Der Klang hält bis zur notierten Abschaltung an; das Tonende ist hörbar und muss erhalten bleiben. Bindung verlängert ohne neuen Einsatz. Eine rein grafische Aufteilung anschließender Stille erzeugt kein weiteres Klangende. |
 
 Dies sind Prüfbedingungen, keine akustisch universellen Instrumentklassen.
-Ein gedämpfter Schlag kann ein wirksames Tonende besitzen. Beim Impulsklang
-ist natürliche Abnahme hörbar, aber nicht automatisch eine neue musikalische
-Anweisung. Release, Hall, Tempo und Artikulation können die Äquivalenz ändern.
+Ein gedämpfter Schlag kann ein wirksames Tonende besitzen und liegt dann
+außerhalb des ersten Impulsklangfalls. Variabler Release, Hall, Dämpfung
+und andere Artikulationen werden hier nicht mit zusätzlichen Schwellen
+modelliert. Beim idealisierten Impulsklang darf das Fehlen einer notierten
+Abschaltung nicht wie das Weiterhalten eines Orgeltons ausgewertet werden.
 Bei fehlender Annahme: vorgeschlagen ist ein unvollständiger Auftrag ohne
 eindeutigen Zahlenwert oder ausdrücklich getrennte Szenarien. Kein Default
 „Bongo“ oder „Orgel“ und keine erfundene allgemeine Abschaltschwelle.
@@ -108,8 +121,9 @@ Viertel kein Offset folgt. In diesem Augenblick muss die Höranalyse die
 Teilung mit `01` verringern. Dafür ist kein Wissen um die vollständige
 Notendauer beim ersten Einsatz nötig.
 
-Die notierten Bitwerte sind vorrangig **Analysebeispiele**, nicht bloß
-Erzeugungskosten. Die zuvor vorgeschlagene Trennung als mögliche Erklärung
+Die notierten Bitwerte sind **fachliche Ausgangsbeispiele der Analyse**,
+nicht bloß Erzeugungskosten und keine gegen das Äquivalenzminimum
+geschützten Sollzahlen. Die zuvor vorgeschlagene Trennung als mögliche Erklärung
 abweichender Hörwerte beantwortet diesen Fall nicht und wird dafür
 zurückgenommen. Die räumliche Codeanordnung auf dem Foto legt weiterhin
 nicht automatisch den Erkennungszeitpunkt jeder Anweisung fest.
@@ -117,8 +131,10 @@ nicht automatisch den Erkennungszeitpunkt jeder Anweisung fest.
 **Folgerung:** Beim gehaltenen Ton darf die Auswertung nicht ausschließlich
 auf einen fehlenden neuen Onset prüfen. Im Halbenbeispiel ist ausdrücklich
 das ausbleibende Offset am erwarteten Viertelende entscheidend. Die
-Übertragung dieser Regel auf kurz ausklingende Schläge sowie eine mögliche
-Toleranz bei realem Spiel bleibt gesondert zu klären; die Festlegung selbst
+Übertragung auf I verwendet ausschließlich die dort relevanten Ereignisse:
+Das Ausbleiben einer wirksamen Abschaltung ist bei I kein Beleg für eine
+Halbe. Die konkrete Onset-Ausbleiberegel sowie eine mögliche
+Toleranz bei realem Spiel bleiben gesondert zu klären; die Festlegung selbst
 wird nicht durch eine frei angenommene Frist ersetzt.
 
 ## 3. Ereignis, Erwartung und Erkennung
@@ -167,6 +183,15 @@ Interpretationen. Hörbare Ereignisse bleiben erhalten; erkannte
 Ausbleibeinformation ebenfalls. Spätere Korrektur ist möglich.
 Mehrdeutigkeit soll mit dem Beginn des nächsten Takts abgeschlossen werden.
 Letzteres ist eine Modellentscheidung, kein nachgewiesenes Hörgesetz.
+
+**Festgelegt – Rangfolge im Konflikt mit dem Foto:** Zulässigkeit wird an
+den hörbaren Ereignissen unter I bzw. G und am zeitlichen Informationsstand
+geprüft. Unter den so zulässigen Interpretationen hat die günstigste Vorrang
+vor einem handschriftlichen Beispielwert. Die Minimierung muss daher auch
+Varianten ohne rein notationsbedingte Pausenteilung berücksichtigen.
+Bereits hörseitig entstandene Information bleibt nach dem bisherigen
+Vertrag erhalten; der neue Vorrang ist keine Freigabe für beliebige
+rückblickende Kompression.
 
 **Vorschlag V07 – festgeschriebene Erkenntnisse, offene Interpretation:**
 
@@ -252,16 +277,21 @@ Keine Übernahme der alten Codesuche oder des alten 128-Slot-Limits.
 **Abnahme:** Eine andere Person kann aus Eingabe und benannten Bedingungen
 dieselben Anweisungen, Zustände, Wörterbuchwechsel und Kosten herleiten.
 Softwaretests belegen diese Reproduzierbarkeit, keine psychologische
-Validierung. Bis dahin bleiben Beispielwerte mit ihrer Herkunft markiert.
+Validierung. Jeder Prüffall benennt I oder G (bei einem Vergleich beide),
+Ereignisfolge, Fenster und bekannte Bedingungen. Notierter Ausgangswert,
+Kosten einer vorgeschlagenen Interpretation und nachgewiesenes Minimum
+werden unterschieden. Abweichungen vom Foto werden mit der günstigeren
+Interpretation und deren hörbarer Gleichwertigkeit erklärt; wo Regeln
+noch fehlen, wird kein exaktes Minimum behauptet.
 
 ## 7. Entscheidungen für den nächsten fachlichen Durchgang
 
 | ID | Entscheidung und konkreter Prüfpunkt | Vorschlag / Status |
 | --- | --- | --- |
-| D01 | Bedeutung der Bildwerte und Erkenntnis der Anfangshalben. | Geklärt: Analysebeispiele; nach erstem Einsatz N und Viertelabstand; `01` zu Beginn der zweiten Viertel bei ausbleibendem Offset. Weitere Einzelabläufe bleiben zu prüfen. |
+| D01 | Bedeutung der Bildwerte und Erkenntnis der Anfangshalben. | Geklärt: fachliche Ausgangsbeispiele; Äquivalenzminimum hat Vorrang. In G nach erstem Einsatz N und Viertelabstand; `01` zu Beginn der zweiten Viertel bei ausbleibendem Offset. |
 | D02 | Anker und Phase nach Teilungswechseln; keine rückwirkenden neuen Erwartungen. | Punktierungsfall bestätigt: erster Einsatz bleibt Anker, nach `01` Erwartung bei 2, bei 3/2 zweimal `00` ohne Ankerverschiebung. Allgemeine Regel und Taktübergang noch offen. |
 | D03 | Welche Interpretation wird wann festgeschrieben? Welche Korrektur bleibt kostenpflichtig? | V07; Ausbleibeentscheidung muss vor späterem Einsatz bindend sein. |
-| D04 | Tonende, Dauererwartung und Pause: wann `11`, wann `01`, wann beide? | Zwei explizite Klangannahmen V01; numerische Hörwerte noch offen. |
+| D04 | Tonende, Dauererwartung und Pause: wann `11`, wann `01`, wann beide? | I und G für die erste Fassung festgelegt; hörbare Enden erhalten. Pausengliederung allein erzeugt keine Teilung. Genaue Übergangsregeln noch offen. |
 | D05 | Ausbleibefrist, konkurrierende Ereignisse, wiederholtes Ausbleiben und Analyseende. | V05/V06; Rand- und Gleichzeitigkeitstests nötig. |
 | D06 | Anfangspause und Taktabschluss einschließlich Fristen jenseits der Grenze. | Keine kostenlose Anfangspause oder automatischer Zustandsreset unterstellt. |
 | D07 | Zusätzliche Triolenoperationen, aktivierende Kosten, Erkennung, Taktwechsel. | R03/R04 bleiben Vorschläge. |
