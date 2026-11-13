@@ -27,7 +27,7 @@ Regeln sind bis zur ausdrücklichen Entscheidung unverbindlich.
    Derselbe notierte Rhythmus kann daher unter I und G verschiedene Werte
    haben; ohne benannte Klangbedingung gibt es keinen Wert.
 
-**Rechenbeispiel unter Profil K (K-A und K-P unbestätigt):** F05.2 unter I
+**Rechenbeispiel nach der Übergangstabelle in Abschnitt 2:** F05.2 unter I
 kostet allein 4 Bit (`10 11`). Folgt ein Takt mit nur einem Einsatz bei 4,
 kostet das zweitaktige Beispiel 6 Bit über `10 01 01`; der Pausenpfad
 `10 11 10 11` kostet 8. Der zweite Takt ändert also rückblickend die
@@ -115,7 +115,9 @@ Die [F05-Rechnungen](02-bildpruefung-und-ereignisablaeufe.md#3-schrittweise-rech
 konkretisieren dies als **Rechenprofil K mit noch unbestätigten Teilen**:
 P erhält darin Teilung/Phase, erwartet aber keine neuen Töne; G
 erwartet zunächst ein Ende nach Δ und erlaubt reguläre Reartikulation
-ohne `11 10`. A=0 wird für die sieben Figuren ausdrücklich angenommen.
+ohne `11 10`. Die Ankerregel ist seit dem 13. November 2026 festgelegt
+(Abschnitt 2), ebenso der Pausenzustand (K-P); die offenen Teile von K-G
+bleiben Rechenannahmen.
 Anfangspause und Analysegrenze sind inzwischen entschieden: `11` am
 Anfang bezahlen; keine zusätzliche Anweisung allein an der Fenstergrenze.
 
@@ -152,8 +154,128 @@ musikalische Stelle b beziehen, verändert aber nicht das damals verfügbare
 Wissen. **Inzwischen bestätigt für den Punktierungsfall:** Der erste
 Einsatz bei 0 bleibt Anker. Nach `01` gilt Δ=2 und die nächste Erwartung
 liegt bei 2. Der Einsatz bei 3/2 führt durch `00 00` zu Δ=1/2, ohne den
-Anker zu verschieben. Diese Bestätigung legt noch keine allgemeine
-Ankerregel für andere Figuren oder Taktübergänge fest.
+Anker zu verschieben, solange dieser Einsatz eingeordnet wird.
+
+**Festgelegt – Ankerregel, Entscheidung des Projektinhabers vom
+13. November 2026:**
+
+1. Das Raster der Erwartungen zählt immer vom **zuletzt gespielten
+   Einsatz**: Erwartet wird bei `A + k·Δ` mit `k ≥ 1`. Vor dem ersten
+   Einsatz eines Takts ist A der Taktanfang.
+2. Ein **Taktwechsel setzt den Anker auf den Taktanfang** zurück. Abstand Δ
+   und Spielmodus laufen unverändert weiter; es entstehen dadurch keine
+   Anweisung und keine Kosten.
+3. Gilt am Taktanfang „Noten spielen“, ist die **Eins selbst ein
+   erwarteter Einsatz**. Ein über den Taktstrich fortgesetzter verschobener
+   Puls bezahlt den ausbleibenden Einsatz auf der Eins daher in jedem Takt
+   neu.
+4. Ein Einsatz wird gegen das Raster des bis dahin geltenden Ankers
+   eingeordnet; erst danach wird er selbst zum Anker. Der bestätigte
+   Punktierungsfall ist ein Spezialfall dieser Regel: Bis zum zweiten
+   Einsatz ist der erste zugleich der zuletzt gespielte.
+
+**Folge:** Innerhalb eines Takts folgt das Raster dem tatsächlich
+Gespielten; am Taktstrich setzt sich der bekannte metrische Bezug wieder
+durch. Der frühere Vorschlag, das erste Gitter eines Takts beizubehalten
+(A=0), ist abgelöst. Die günstigsten Werte der bisher gerechneten
+Beispiele ändern sich dadurch nicht; einzelne teurere Alternativpfade
+schon (F05.6.I, Pfad `10 01`).
+
+**Festgelegt – Schrittweite der Teilungswechsel, 13. November 2026:**
+Mehrfaches Verstärken am selben Ereignis ist erlaubt und wird je Schritt
+bezahlt (Viertel → Sechzehntel: `00 00`, 4 Bit). Ein einzelnes Ausbleiben
+verringert die Teilung dagegen höchstens um **eine** Stufe (`01`, Δ → 2Δ).
+Weiteres Verringern braucht ein weiteres Ausbleiben. Die Zuordnung der
+Codes bleibt wie in der Tabelle oben; verlangt ist nur ihre Eindeutigkeit.
+
+**Festgelegt – Pausenzustand, Entscheidung des Projektinhabers vom
+13. November 2026:**
+
+1. Der Abstand Δ bleibt während „Pausen spielen“ erhalten.
+2. Der Anker bleibt der letzte Einsatz vor der Pause; das Raster läuft
+   stumm weiter.
+3. Stille kostet nichts, unabhängig von ihrer Länge. Es gibt kein
+   wiederholtes `11`.
+4. Ein Einsatz auf dem stummen Raster kostet nur `10`. Liegt er daneben,
+   wird zuerst so oft wie nötig verstärkt (`00`), dann folgt `10`.
+
+### Übergangstabelle für den Kern (Impulsklang, exaktes Raster, binäre Teilung)
+
+**Festgelegt als Zusammenfassung der Entscheidungen vom 13. November 2026.**
+Zustand ist Spielmodus (N = Noten, P = Pausen spielen), Abstand Δ und
+Anker A. Gehaltene Klänge (G) und Triolen sind hier nicht erfasst.
+
+| Nr. | Zustand | Ereignis | Anweisung | Folgezustand | Kosten |
+| --- | --- | --- | --- | --- | ---: |
+| 1 | Beginn des Beispiels | Einsatz auf der Eins | `10` | N, Δ = Beat, A = Taktanfang | 2 |
+| 2 | Beginn des Beispiels | kein Einsatz auf der Eins | `11` | P, Δ = Beat, A = Taktanfang | 2 |
+| 3 | N | Einsatz am erwarteten Punkt | keine | A = dieser Einsatz | 0 |
+| 4 | N | Einsatz vor dem erwarteten Punkt | `00`, so oft, bis der Einsatz auf `A + k·Δ` liegt | Δ entsprechend kleiner, A = dieser Einsatz | 2 je Schritt |
+| 5a | N | erwarteter Einsatz bleibt aus | `11` | P, Δ und A unverändert | 2 |
+| 5b | N | erwarteter Einsatz bleibt aus | `01` | N, Δ verdoppelt, nächste Erwartung `A + Δ` mit dem neuen Δ | 2 |
+| 6 | P | kein Einsatz | keine | unverändert | 0 |
+| 7 | P | Einsatz auf dem stummen Raster | `10` | N, A = dieser Einsatz | 2 |
+| 8 | P | Einsatz neben dem stummen Raster | `00` so oft wie nötig, dann `10` | N, Δ kleiner, A = dieser Einsatz | 2 je Schritt + 2 |
+| 9 | N oder P | Taktwechsel | keine | A = Taktanfang; Δ und Spielmodus bleiben | 0 |
+| 10 | beliebig | Ende des Beispiels | keine | Wert = Minimum über alle Wege (Leitsatz 1) | 0 |
+
+Bei einem Ausbleiben werden 5a und 5b beide weiterverfolgt; das ist die
+gewollte Vagheit nach Leitsatz 3. Außerhalb dieser Zeilen entsteht keine
+Anweisung: kein Verstärken ohne Einsatz, kein Verringern ohne Ausbleiben,
+kein `11` in P und kein `10` in N.
+
+**Folgerungen aus Zeile 9 und der bestätigten Ankerregel:**
+
+- Ein Einsatz auf der Eins ist bei N stets erwartet. Wer im Takt auf
+  verschobenen Positionen gespielt hat, kehrt auf der Eins des nächsten
+  Takts ohne Kosten zum Metrum zurück.
+- Eine Erwartung, die über den Taktstrich reicht, verfällt. Liegt der
+  letzte Einsatz bei 3½ mit Viertelabstand, gilt nach dem Taktwechsel die
+  Eins bei 4 und danach 5, nicht 4½.
+
+**Stand der Werte:** Mit dieser Tabelle ist der Kern für beliebige
+Rasterbeispiele unter I bestimmt. Die bisherigen I-Werte sind von Hand
+gerechnet; ihr Nachweis als Minimum steht bis zu einer maschinellen
+Rechnung über alle Wege aus.
+
+### Gehaltener Klang: das Tonende als Pauseneinsatz
+
+**Festgelegt, Entscheidung des Projektinhabers vom 13. November 2026:**
+Endet ein gehaltener Ton, ohne dass zugleich ein neuer Ton einsetzt, hört
+man die Pause als Einsatz. Das ist die einzige Möglichkeit, eine Pause als
+Einsatz zu hören. Unter I gibt es deshalb keine Pauseneinsätze; dort
+bleibt „Pausen spielen“ eine Deutung des Ausbleibens.
+
+**Festgelegt – Übergangstabelle unter G, bestätigt am 13. November 2026:** G
+verwendet dieselbe Tabelle mit einer zweiten Ereignisart, dem
+Pauseneinsatz. Es ändern sich nur die Zeilen zum erwarteten Punkt in N:
+
+| Nr. | Zustand | Ereignis unter G | Anweisung | Folgezustand | Kosten |
+| --- | --- | --- | --- | --- | ---: |
+| 5a-G | N | Pauseneinsatz am erwarteten Punkt | `11` | P, Δ unverändert, A = dieser Pauseneinsatz | 2 |
+| 5b-G | N | am erwarteten Punkt weder neuer Ton noch Pauseneinsatz (Ton hält) | `01` | N, Δ verdoppelt | 2 |
+| 4-G | N | Pauseneinsatz vor dem erwarteten Punkt | `00` so oft wie nötig, dann `11` | P, Δ kleiner, A = dieser Pauseneinsatz | 2 je Schritt + 2 |
+
+Ein nahtloser Neuanschlag am erwarteten Punkt bleibt Zeile 3 ohne Kosten.
+Unter G entfällt damit die Wahl zwischen 5a und 5b: Der hörbare Verlauf
+entscheidet. Die Vagheit nach Leitsatz 3 entsteht an dieser Stelle nur
+unter I.
+
+**Abgleich mit den gerechneten Beispielen (Handrechnung):** Die Regel
+ergibt die bisherigen G-Werte F05.1–F05.7 (`2, 6, 6, 4, 6, 4, 4`), Halbe
+`10 01` gegen Viertel plus Pause `10 11` und den Punktierungsfall
+`10 01 00 00`. Für Foto 1, Rhythmus 2 ergibt sie, wenn der letzte Ton als
+Achtel gehalten wird, `10 11 00 10 00 01` = 12 Bit: dieselben Anweisungen
+und dieselbe Summe wie die korrigierte Fotofolge `10 00 11 10 00 01`, in
+anderer Reihenfolge.
+
+**Festgelegt, bestätigt am 13. November 2026:**
+
+- Der Pauseneinsatz wird wie ein gespielter Einsatz zum Anker; das stumme
+  Raster zählt danach von ihm.
+- Ein über den Taktstrich gehaltener Ton ist auf der Eins ein Ausbleiben
+  und kostet `01`, solange der Abstand die Eins noch erwartet. Eine
+  Überbindung bezahlt also am Taktstrich.
 
 **Festgelegt – Anfangspause:** Der betrachtete Takt und das Metrum stehen
 bereits fest. Dass an seinem Anfang nichts erklingt, gehört zum rhythmischen
@@ -164,8 +286,8 @@ rechtfertigt keine zusätzliche Teilung. Ein noch uninitialisierter
 Spielmodus beschreibt höchstens den Zustand vor der initialen Anweisung,
 nicht eine kostenlose Anfangspause.
 
-**Offen (W04/W06):** Vorgeschichte, neuer Analysebeginn,
-Ankerauswahl und Phase außerhalb des bestätigten Punktierungsfalls.
+**Offen (W04/W06):** Vorgeschichte und neuer Analysebeginn. Ankerauswahl
+und Phase sind durch die Ankerregel entschieden.
 Insbesondere darf eine vorhandene Vorgeschichte
 die bestätigte Zahlung des ersten Einsatzes nicht still aufheben.
 
@@ -238,7 +360,13 @@ zusätzlich erwarteten Ereignistyp und Zuordnungsfenster. Erwartet werden
 muss ein bestimmtes Ereignis: ein neuer Anschlag, ein Tonende oder eine
 Pausenfortführung sind nicht austauschbar.
 
-**Vorschlag V05:** Trennung von Ereignistoleranz und Ausbleibefrist,
+**Festgelegt – Erkennung auf dem exakten Raster, 13. November 2026:**
+Bei rastergenauen symbolischen Beispielen gilt ein Ausbleiben **am
+erwarteten Rasterpunkt** als erkannt; Erkennungszeit und erwartete Zeit
+fallen zusammen. Toleranzen und Fristen betreffen erst gespielte Musik mit
+Timingabweichungen und sind für den symbolischen Kern keine Voraussetzung.
+
+**Vorschlag V05, nur für Darbietungen mit Timingabweichung:** Trennung von Ereignistoleranz und Ausbleibefrist,
 zunächst konfigurierbar mit offener Herkunft. Die
 [Literaturauswertung](03-literatur-und-erkennung.md) liefert keine allgemeine
 Zahl. Die Beispieltabellen setzen symbolisch
@@ -408,10 +536,10 @@ noch fehlen, wird kein exaktes Minimum behauptet.
 | ID | Entscheidung und konkreter Prüfpunkt | Vorschlag / Status |
 | --- | --- | --- |
 | D01 | Bedeutung der Bildwerte und Erkenntnis der Anfangshalben. | Geklärt: fachliche Ausgangsbeispiele; Äquivalenzminimum hat Vorrang. In G nach erstem Einsatz N und Viertelabstand; `01` zu Beginn der zweiten Viertel bei ausbleibendem Offset. |
-| D02 | Anker und Phase nach Teilungswechseln; keine rückwirkenden neuen Erwartungen. | Punktierungsfall bestätigt: erster Einsatz bleibt Anker, nach `01` Erwartung bei 2, bei 3/2 zweimal `00` ohne Ankerverschiebung. Allgemeine Regel und Taktübergang noch offen. |
+| D02 | Anker und Phase nach Teilungswechseln; keine rückwirkenden neuen Erwartungen. | Entschieden am 13. November 2026: Raster zählt vom zuletzt gespielten Einsatz; Taktwechsel setzt nur den Anker auf den Taktanfang; die Eins ist bei „Noten spielen“ erwartet. Mehrfaches Verstärken am selben Ereignis erlaubt, Verringern nur eine Stufe je Ausbleiben. Punktierungsfall bleibt als Spezialfall gültig. |
 | D03 | Welche Interpretation wird wann festgeschrieben? Welche Korrektur bleibt kostenpflichtig? | V07 und F05.3.I: konkurrierende 6-Bit-Pfade bezahlen dieselbe Ausbleibeevidenz, ohne zwingend dieselben Befehle zu verwenden. Punktierungsfall als Gegenprobe erhalten. |
 | D04 | Tonende, Dauererwartung und Pause: wann `11`, wann `01`, wann beide? | I und G festgelegt; hörbare Enden erhalten. Ausbleiben ist auch unter I Evidenz für `11` oder `01`; Tonende für `11` nicht notwendig. F05.6.I muss `10 11` berücksichtigen. Allgemeine Auswahl-/Übergangsregeln noch offen. |
-| D05 | Ausbleibefrist, konkurrierende Ereignisse, wiederholtes Ausbleiben und Analyseende. | V05/V06; Rand- und Gleichzeitigkeitstests nötig. |
+| D05 | Ausbleibefrist, konkurrierende Ereignisse, wiederholtes Ausbleiben und Analyseende. | Für exakte Rasterbeispiele entschieden: Erkennung am erwarteten Rasterpunkt. Fristen und Toleranzen für gespielte Musik bleiben offen (V05/V06). |
 | D06 | Anfangspause und Analysegrenze einschließlich Fristen jenseits der Grenze. | Entschieden: Anfangspause mit `11` bezahlen; keine Zusatzanweisung allein wegen der Analysegrenze, Zustand fortführen und Grenzereignisse regulär auswerten. Noch offen ist die Zuordnung grenzüberschreitender Erkennung. |
 | D07 | Zusätzliche Triolenoperationen, aktivierende Kosten, Erkennung, Taktwechsel. | R03/R04 bleiben Vorschläge. |
 | D08 | Korrekturen auf Foto 1 und komplexer 22-Bit-Fall. | Beide ersten `01` auf Foto 1 ausdrücklich zu `00` korrigiert. Nur der komplexe 22-Bit-Fall bleibt sicher zu transkribieren. |

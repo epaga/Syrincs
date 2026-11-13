@@ -84,27 +84,37 @@ Erkennung später, ist der jeweilige Pfad nur ein bedingtes Ergebnis.
 Keine Millisekundenfrist wird festgelegt. Fehlende G-Offsets im bestätigten
 Halbenfall werden gemäß Projektinhaber am musikalischen Viertelende erkannt.
 
-**Rechenprofil K:** K-A, K-P und K-G bleiben unbestätigte
-Konkretisierungen. K-E und K-S sind inzwischen durch die folgenden
+**Festgelegt am 13. November 2026:** Für diese rastergenauen Beispiele
+gilt `r_e = e`; ein Ausbleiben ist am erwarteten Rasterpunkt erkannt. Die
+in den Tabellen noch genannten Bedingungen der Form `r_e < …` sind damit
+erfüllt und keine offenen Annahmen mehr.
+
+**Rechenprofil K:** K-G bleibt in Teilen eine unbestätigte
+Konkretisierung. K-A, K-P, K-E und K-S sind inzwischen durch die folgenden
 Entscheidungen festgelegt; der Gesamtvertrag ist damit noch nicht vollständig.
 
-- **K-A (Phase):** Für diese sieben rastergebundenen Rechnungen bleibt A=0.
-  Neue Erwartungen liegen auf diesem Gitter; nach Änderungen werden nur
-  gegenwärtige/künftige Positionen berücksichtigt. Die allgemeine Übernahme
-  dieses Ankers ist unbestätigt. Eine Gegenrechnung mit einem anderen Anker
-  steht bei F05.6; der bestätigte Punktierungsanker wird nicht verändert.
-  Ein durch Ausbleiben begründetes `01` erzeugt keinen Einsatz am gerade
-  unerfüllten Zeitpunkt, auch wenn dieser auf dem neuen Gitter liegt:
-  Der Ausfall ist Anlass der Änderung und bereits bezahlt. Die nächste
-  Onset-Erwartung liegt danach; beispielsweise bei F05.6.I nach dem
-  Ausbleiben bei 2 und Δ=2 erst bei 4. Dies ist Teil von K-A, keine
-  nachträgliche kostenlose Tilgung der Ausbleibeevidenz.
-- **K-P (Pausenzustand):** P unterdrückt erwartete neue Töne, erhält aber Δ
+- **K-A (Phase), festgelegt am 13. November 2026:** A ist der zuletzt
+  gespielte Einsatz; vor dem ersten Einsatz eines Takts und nach jedem
+  Taktwechsel ist A der Taktanfang. Erwartet wird bei `A + k·Δ`, `k ≥ 1`;
+  am Taktanfang ist bei N zusätzlich die Eins selbst erwartet. Δ und
+  Spielmodus überdauern den Taktwechsel. Nach einem durch Ausbleiben
+  begründeten `01` liegt die nächste Erwartung bei `A + 2Δ` und damit
+  stets nach dem unerfüllten Zeitpunkt: Der Ausfall ist bereits bezahlt.
+  Bei F05.6.I liegt sie nach dem Ausbleiben bei 2 daher bei 3 (A=1), nicht
+  mehr bei 4. Ein einzelnes Ausbleiben verringert nur um eine Stufe;
+  mehrfaches Verstärken am selben Einsatz ist erlaubt. Die frühere
+  Rechenannahme A=0 ist abgelöst; der bestätigte Punktierungsfall bleibt
+  als Spezialfall gültig.
+- **K-P (Pausenzustand), festgelegt am 13. November 2026:** P unterdrückt erwartete neue Töne, erhält aber Δ
   und A. Es gibt Pausenrasterpunkte, jedoch keinen Klang an ihnen und keine
   kostenpflichtige Wiederholung von `11`. Ein passender neuer Einsatz kann
-  mit `10` auf demselben Gitter zurückkehren. Ohne diese Ergänzung wäre die
-  geforderte Fortwirkung von P noch nicht ausführbar beschrieben.
-- **K-G (Dauer):** In N ist bei G neben dem nächsten Einsatz ein Tonende
+  mit `10` auf demselben Gitter zurückkehren; ein Einsatz neben dem Gitter
+  braucht zuvor `00`. Die vollständigen Übergänge stehen in der
+  [Übergangstabelle des Vertrags](01-fachlicher-vertrag.md#2-wörterbuch-und-zustand).
+- **K-G (Dauer), Grundsatz festgelegt am 13. November 2026:** Ein Tonende
+  ohne gleichzeitigen Neuanschlag wird als Pauseneinsatz gehört; siehe
+  [Vertrag, Abschnitt 2](01-fachlicher-vertrag.md#gehaltener-klang-das-tonende-als-pauseneinsatz).
+  Die folgende Rechenfassung stimmt damit überein: In N ist bei G neben dem nächsten Einsatz ein Tonende
   nach Δ erwartet. Nahtloses Ende mit regulärem Neuanschlag ist Fortsetzung,
   kein `11 10`. Ein isoliertes hörbares Ende kann durch `11` erklärt werden.
   P bei weiter hörbar gehaltenem Ton ist unzulässig. Dieser konkrete
@@ -133,9 +143,8 @@ Innerhalb eines Pfads bleiben erkannte Änderungen erhalten.
 **Wertstatus:** Fotozahl = Ausgangswert; K = Kosten eines unter den
 benannten Annahmen dargestellten Kandidaten; günstigster dargestellter
 K-Wert = Vergleich dieser Pfade. Ein nachgewiesenes Minimum unter vollständig
-festgelegtem Gesamtvertrag liegt noch nicht vor. Insbesondere sind K-A,
-K-P, K-G und die allgemeine Festschreiberegel nicht bestätigt. K-E und K-S
-sind entschieden. Gleiche Summen bei verschiedenen erhaltenen Klangverläufen
+festgelegtem Gesamtvertrag liegt noch nicht vor. Insbesondere sind Teile von K-G nicht bestätigt, und der maschinelle
+Minimalitätsnachweis steht aus. K-A, K-P, K-E und K-S sind entschieden. Gleiche Summen bei verschiedenen erhaltenen Klangverläufen
 sind zulässig; die ältere strikte Ungleichung ist abgelöst.
 
 ### 3.2 F05.1 – vier Viertel (Foto: 2 Bit)
@@ -146,9 +155,9 @@ Onsets, Tonenden `{1,2,3,4}`; das Ende 4 bleibt Randereignis.
 | Fall / Pfad | Zeitpunkt | Verfügbare Evidenz | Erkennung | Vorher | Anweisung | Nachher Δ/Anker/Erwartung enthalten | Kosten / Summe |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | I/G | 0 | Erster Einsatz | 0 | U/1/0/– | `10` | N/1/0/1 | 2 / 2 |
-| I/G | 1 | Einsatz; G zugleich reguläres Ende des vorherigen Tons | 1 | N/1/0/1 | keine | N/1/0/2 | 0 / 2 |
-| I/G | 2 | Einsatz; G zugleich reguläres Ende | 2 | N/1/0/2 | keine | N/1/0/3 | 0 / 2 |
-| I/G | 3 | Einsatz; G zugleich reguläres Ende | 3 | N/1/0/3 | keine | N/1/0/4 | 0 / 2 |
+| I/G | 1 | Einsatz; G zugleich reguläres Ende des vorherigen Tons | 1 | N/1/0/1 | keine | N/1/1/2 | 0 / 2 |
+| I/G | 2 | Einsatz; G zugleich reguläres Ende | 2 | N/1/1/2 | keine | N/1/2/3 | 0 / 2 |
+| I/G | 3 | Einsatz; G zugleich reguläres Ende | 3 | N/1/2/3 | keine | N/1/3/4 | 0 / 2 |
 
 K: I=G=2. `11` an einem der inneren Punkte würde ohne gleichzeitiges `10`
 den tatsächlichen Einsatz nicht erklären. Das Paar `11 10` kostet je 4 Bit
@@ -194,11 +203,11 @@ Tonenden `{2,3,4}`; Ende 4 am Rand.
 | I-D / I-P / G-D | 0 | Erster Einsatz | 0 | U/1/0/– | `10` | N/1/0/1 | 2 / 2 |
 | I-D | 1 | Erwarteter Einsatz fehlt | r_1 < 2 | N/1/0/1 | `01` | N/2/0/2 | 2 / 4 |
 | G-D | 1 | Erwartetes Ende fehlt, Ton hält | 1 | N/1/0/1 | `01` | N/2/0/2 | 2 / 4 |
-| I-D / G-D | 2 | Einsatz, in G zugleich Ende der Halben | 2 | N/2/0/2 | keine | N/2/0/4 | 0 / 4 |
-| I-D / G-D | 3 | Früherer Einsatz; G zugleich hörbares Ende des Tons ab 2 | 3 | N/2/0/4 | `00` | N/1/0/4 | 2 / 6 |
+| I-D / G-D | 2 | Einsatz, in G zugleich Ende der Halben | 2 | N/2/0/2 | keine | N/2/2/4 | 0 / 4 |
+| I-D / G-D | 3 | Früherer Einsatz; G zugleich hörbares Ende des Tons ab 2 | 3 | N/2/2/4 | `00` | N/1/3/4 | 2 / 6 |
 | I-P | 1 | Erwarteter Einsatz fehlt | r_1 < 2 | N/1/0/1 | `11` | P/1/0/P:2 | 2 / 4 |
-| I-P | 2 | Einsatz auf dem erhaltenen Viertelgitter | 2 | P/1/0/P:2 | `10` | N/1/0/3 | 2 / 6 |
-| I-P | 3 | Regulärer Einsatz | 3 | N/1/0/3 | keine | N/1/0/4 | 0 / 6 |
+| I-P | 2 | Einsatz auf dem erhaltenen Viertelgitter | 2 | P/1/0/P:2 | `10` | N/1/2/3 | 2 / 6 |
+| I-P | 3 | Regulärer Einsatz | 3 | N/1/2/3 | keine | N/1/3/4 | 0 / 6 |
 
 I: `10 01 00` und `10 11 10` kosten je 6 und sind unter K hörbar gleichwertig.
 G: P bei 1 würde den gehaltenen Ton vor 2 entfernen und ist daher unzulässig;
@@ -217,11 +226,11 @@ Notation `0:1, 1:1, 2:2`. I: Onsets `{0,1,2}`. G: zusätzlich Enden
 | Fall / Pfad | Zeitpunkt | Verfügbare Evidenz | Erkennung | Vorher | Anweisung | Nachher | Kosten / Summe |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | I/G | 0 | Erster Einsatz | 0 | U/1/0/– | `10` | N/1/0/1 | 2 / 2 |
-| I/G | 1 | Regulärer Einsatz; G auch Ende | 1 | N/1/0/1 | keine | N/1/0/2 | 0 / 2 |
-| I/G | 2 | Regulärer Einsatz; G auch Ende | 2 | N/1/0/2 | keine | N/1/0/3 | 0 / 2 |
-| I-P | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/0/3 | `11` | P/1/0/P:4 | 2 / 4 |
-| I-D | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/0/3 | `01` | N/2/0/4 | 2 / 4 |
-| G-D | 3 | Erwartetes Ende fehlt, Ton klingt weiter | 3 | N/1/0/3 | `01` | N/2/0/4 | 2 / 4 |
+| I/G | 1 | Regulärer Einsatz; G auch Ende | 1 | N/1/0/1 | keine | N/1/1/2 | 0 / 2 |
+| I/G | 2 | Regulärer Einsatz; G auch Ende | 2 | N/1/1/2 | keine | N/1/2/3 | 0 / 2 |
+| I-P | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/2/3 | `11` | P/1/2/P:4 | 2 / 4 |
+| I-D | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/2/3 | `01` | N/2/2/4 | 2 / 4 |
+| G-D | 3 | Erwartetes Ende fehlt, Ton klingt weiter | 3 | N/1/2/3 | `01` | N/2/2/4 | 2 / 4 |
 
 I: gleich teure Kandidaten `10 11` und `10 01`, je 4. Sie sind im Fenster
 gleichwertig, aber besitzen verschiedene Endzustände für eine spätere
@@ -238,10 +247,10 @@ Ende `{4}`. Es gibt vor 2 weder einen Ton noch ein kontrolliertes Tonende.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | I/G, S+ | 0 | Beobachteter Anfang ohne Einsatz; bezahlte Initialisierung festgelegt | r_0 < 2, Politik offen | U/1/0/– | `11` | P/1/0/P:1 | 2 / 2 |
 | I/G, S+ | 1 | Stille setzt sich fort | 1 | P/1/0/P:1 | keine | P/1/0/P:2 | 0 / 2 |
-| I/G, S+ | 2 | Erster Einsatz auf Viertelgitter | 2 | P/1/0/P:2 | `10` | N/1/0/3 | 2 / 4 |
-| I-S+P | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/0/3 | `11` | P/1/0/P:4 | 2 / 6 |
-| I-S+D | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/0/3 | `01` | N/2/0/4 | 2 / 6 |
-| G-S+D | 3 | Erwartetes Ende fehlt, Klang hält | 3 | N/1/0/3 | `01` | N/2/0/4 | 2 / 6 |
+| I/G, S+ | 2 | Erster Einsatz auf Viertelgitter | 2 | P/1/0/P:2 | `10` | N/1/2/3 | 2 / 4 |
+| I-S+P | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/2/3 | `11` | P/1/2/P:4 | 2 / 6 |
+| I-S+D | 3 | Erwarteter Einsatz fehlt | r_3 < 4 | N/1/2/3 | `01` | N/2/2/4 | 2 / 6 |
+| G-S+D | 3 | Erwartetes Ende fehlt, Klang hält | 3 | N/1/2/3 | `01` | N/2/2/4 | 2 / 6 |
 
 S+: I `11 10 11` oder `11 10 01`, je 6; G `11 10 01`, 6.
 Die frühere SU-Rechnung (4 Bit ohne bezahlte Anfangspause) ist
@@ -264,29 +273,29 @@ als Kandidat festgelegt; dies wird hier nicht erneut zur Grundsatzfrage.
 | Fall / Pfad | Zeitpunkt | Verfügbare Evidenz | Erkennung | Vorher | Anweisung | Nachher | Kosten / Summe |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | I/G | 0 | Erster Einsatz | 0 | U/1/0/– | `10` | N/1/0/1 | 2 / 2 |
-| I/G | 1 | Regulärer Einsatz; G zugleich Ende | 1 | N/1/0/1 | keine | N/1/0/2 | 0 / 2 |
-| I-P | 2 | Erwarteter Einsatz fehlt | r_2 < 3 für die gezeigte Reihenfolge | N/1/0/2 | `11` | P/1/0/P:3 | 2 / 4 |
-| I-P | 3 | Kein Einsatz, erwartbare P-Fortsetzung | 3 bzw. nach r_2 | P/1/0/P:3 | keine | P/1/0/P:4 | 0 / 4 |
-| I-D | 2 | Erwarteter Einsatz fehlt | r_2 < 4 | N/1/0/2 | `01` | N/2/0/4 | 2 / 4 |
-| G-P | 2 | Hörbares Ende ohne neuen Ton | 2 | N/1/0/2 | `11` | P/1/0/P:3 | 2 / 4 |
-| G-P | 3 | Stille setzt sich fort | 3 | P/1/0/P:3 | keine | P/1/0/P:4 | 0 / 4 |
+| I/G | 1 | Regulärer Einsatz; G zugleich Ende | 1 | N/1/0/1 | keine | N/1/1/2 | 0 / 2 |
+| I-P | 2 | Erwarteter Einsatz fehlt | 2 | N/1/1/2 | `11` | P/1/1/P:3 | 2 / 4 |
+| I-P | 3 | Kein Einsatz, erwartbare P-Fortsetzung | 3 | P/1/1/P:3 | keine | P/1/1/P:4 | 0 / 4 |
+| I-D | 2 | Erwarteter Einsatz fehlt | 2 | N/1/1/2 | `01` | N/2/1/3 | 2 / 4 |
+| I-D | 3 | Erwarteter Einsatz fehlt erneut | 3 | N/2/1/3 | `11` oder `01` | P/2/1/– bzw. N/4/1/– (nächste Erwartung erst nach dem Taktwechsel) | 2 / 6 |
+| G-P | 2 | Hörbares Ende ohne neuen Ton | 2 | N/1/1/2 | `11` | P/1/1/P:3 | 2 / 4 |
+| G-P | 3 | Stille setzt sich fort | 3 | P/1/1/P:3 | keine | P/1/1/P:4 | 0 / 4 |
 
-I: `10 11` und unter K-A auch `10 01` kosten 4. G: `10 11`, 4;
+I: `10 11` kostet 4. Der D-Pfad kostet mit dem Anker am letzten Einsatz
+6 (`10 01 11` bzw. `10 01 01`) und ist nicht mehr gleich günstig.
+G: `10 11`, 4;
 `01` allein bei 2 lässt unter K-G den Ton weiterklingen und verletzt das
 hörbare Ende. `10 01 11` kostet 6; wenn beide Anweisungen am Ende bei 2
 zugelassen werden, ist die Folge im Fenster darstellbar, unter K aber
 teurer als die bereits vollständige Erklärung `10 11`. Die halbe Pause
 liefert keine eigenständige Evidenz für das zusätzliche `01`.
 
-**Ankervariante A-last, ausdrücklich unbestätigt:** Nach dem Einsatz bei 1
-wird für den Änderungsversuch A=1 statt A=0 genommen. Nach `01` bei r_2 ist
-der Zustand N/2/1/3, Kostenstand 4. Bei 3 fehlt erneut ein erwarteter Ton:
-`11` ergibt P/2/1/P:5 (6 gesamt), oder `01` ergibt N/4/1/5 (6 gesamt).
-Damit kostet der D-Pfad `10 01 11` bzw. `10 01 01` hier 6 statt 4.
-Der P-Pfad `10 11` bleibt 4. Die Ankerregel beeinflusst also Alternativen,
-auch wenn sie diesen günstigsten dargestellten Wert nicht ändert.
-A-last darf nicht ohne gesonderte Bestätigung auf den Punktierungsfall
-übertragen werden; dort ist A=0 bereits verbindlich.
+**Abgelöste Variante A=0:** Mit festem Anker am Taktanfang läge die
+nächste Erwartung nach `01` bei 4, und `10 01` hätte 4 Bit gekostet. Seit
+der Ankerentscheidung vom 13. November 2026 gilt die Tabelle oben. Die
+Ankerregel verändert hier eine Alternative, nicht den günstigsten Wert.
+Im Punktierungsfall führen beide Regeln zum selben Ablauf, weil der erste
+Einsatz bis zum zweiten auch der zuletzt gespielte ist.
 
 ### 3.8 F05.7 – halbe Pause, zwei Viertel (Foto: 8 Bit)
 
@@ -297,8 +306,8 @@ G: zusätzlich hörbare Enden `{3,4}`; Ende 4 am Rand.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | I/G, S+ | 0 | Anfang ohne Einsatz; bezahlte Initialisierung festgelegt | r_0 < 2, Politik offen | U/1/0/– | `11` | P/1/0/P:1 | 2 / 2 |
 | I/G, S+ | 1 | Stille setzt sich fort | 1 | P/1/0/P:1 | keine | P/1/0/P:2 | 0 / 2 |
-| I/G, S+ | 2 | Erster Einsatz auf erhaltenem Viertelgitter | 2 | P/1/0/P:2 | `10` | N/1/0/3 | 2 / 4 |
-| I/G, S+ | 3 | Regulärer Einsatz; G auch Ende | 3 | N/1/0/3 | keine | N/1/0/4 | 0 / 4 |
+| I/G, S+ | 2 | Erster Einsatz auf erhaltenem Viertelgitter | 2 | P/1/0/P:2 | `10` | N/1/2/3 | 2 / 4 |
+| I/G, S+ | 3 | Regulärer Einsatz; G auch Ende | 3 | N/1/2/3 | keine | N/1/3/4 | 0 / 4 |
 
 S+: I=G `11 10`, 4. Der frühere SU-Pfad `10` mit 2 Bit ist
 ausgeschlossen, weil er die Anfangspause nicht bezahlt. Die Fotofolge
@@ -319,7 +328,7 @@ Zahlung des ersten Einsatzes; kostenlose Reaktivierung ist keine Alternative.
 | F05.3 | 6 | `10 01 00` / `10 11 10` = 6 | `10 01 00` = 6 |
 | F05.4 | 4 | `10 11` / `10 01` = 4 | `10 01` = 4 |
 | F05.5 | 6 | `11 10 11` / `11 10 01` = 6 | `11 10 01` = 6 |
-| F05.6 | 6 | `10 11` / `10 01` = 4 (zweiter Pfad ankerabhängig) | `10 11` = 4 |
+| F05.6 | 6 | `10 11` = 4 | `10 11` = 4 |
 | F05.7 | 8 | `11 10` = 4 | `11 10` = 4 |
 
 Alle Zahlen sind Kandidatenkosten bzw. günstigste Werte **im dargestellten
@@ -368,6 +377,11 @@ bei 2 erwartet. Der Einsatz bei 3/2 führt durch `00 00` zum Achtelabstand,
 ohne den Anker zu verschieben. Die entsprechende Ankerführung in der
 Tabelle ist damit für diesen Fall festgelegt.
 
+**Einordnung in die Ankerregel vom 13. November 2026:** Der Einsatz bei
+3/2 wird gegen das Raster des Ankers 0 eingeordnet; danach ist er selbst
+der Anker. Die nächste Erwartung bleibt 2. Die Spalte „A=0“ beschreibt
+also den Anker während der Einordnung.
+
 **Noch offen:** Zuordnungsfenster und allgemeine Festschreiberegel.
 Bei einer stattdessen verwendeten Onset-Ausbleibepolitik mit `τ ≥ 1/2`
 kommt der zweite Einsatz vor oder zugleich mit deren Ausbleibeentscheidung. Dann ist dieselbe Anweisungsfolge nicht herleitbar.
@@ -409,7 +423,7 @@ erzwingen. Die genaue günstigste Hörrechnung ist noch zu bestimmen.
 
 | Prüffall | Klangbedingung | Zu entscheidende bzw. zu bewahrende Eigenschaft |
 | --- | --- | --- |
-| Längeres Ausbleiben | I; in G als eigener Fall mit explizitem Tonende | Mit A=0 und Start Δ=1 wären neue Erwartungen nach je einem `01` bei 2,4,8… denkbar, mit anderem Anker andere Zeiten. Nicht bei jedem ursprünglichen Viertelschlag automatisch `01` zählen. |
+| Längeres Ausbleiben | I; in G als eigener Fall mit explizitem Tonende | Nach einem Einsatz bei A und Start Δ=1 liegen die Erwartungen nach je einem `01` bei A+2, A+4, A+8…; je Ausbleiben nur eine Stufe. Ein Taktwechsel setzt den Anker auf den Taktanfang. Nicht bei jedem ursprünglichen Viertelschlag automatisch `01` zählen. |
 | Halbe vs. Viertel plus Viertelpause | G | Gleiches Onset, hörbares Ende bei 1 statt 2; darf nicht äquivalent normalisiert werden. Verschiedene Tonenden und Erklärungen erhalten; gleiche Summen sind zulässig. |
 | Halbe vs. Viertel plus Viertelpause | I | Bei gleichen Impulsen gleiche Bewertung; keine allein grafisch begründete Pause. |
 | Bindung über die Taktgrenze | G | Klang hält über die Grenze; kein neuer Einsatz aus bloßem Taktstrich. Zustand nicht automatisch zurücksetzen. |
@@ -466,7 +480,7 @@ unabhängig; die verschiedenen Tonenden dürfen weiterhin nicht verschwinden.
 
 ### 7.3 Anker und kausale Vergangenheit
 
-K-A behält bei der späteren Verfeinerung das Gitter bei. In F05.3 wird
+Nach K-A zählt das Raster vom zuletzt gespielten Einsatz. In F05.3 wird
 bei 3 von Δ=2 auf Δ=1 verfeinert. Das neue Viertelgitter wird nicht
 rückwirkend bei 1 geprüft; weder `11` noch ein neuer Auslassungsbetrag
 wird dort nachgefordert. Die tatsächlich gewählte Information bei 1 bleibt
@@ -474,11 +488,14 @@ im jeweiligen Pfad erhalten. Es gibt keinen Wechsel zwischen bereits
 bezahlten Pfaden, der frühere Kosten löscht.
 
 F05.6 zeigt, dass A=0 und ein zuletzt artikulierter Anker A=1 die nächste
-Erwartung nach `01` verschieden setzen (4 gegenüber 3). Vorschlag: Für
-stabilen bekannten Bezug das erste Gitter beibehalten, statt seine Phase
-unbemerkt zu optimieren. Das ist außerhalb des bestätigten Punktierungsfalls
-noch keine Festlegung. Keine neue Ankerpolitik wird in den Bestandsalgorithmus
-übertragen.
+Erwartung nach `01` verschieden setzen (4 gegenüber 3). **Entschieden am
+13. November 2026:** Es gilt der zuletzt gespielte Einsatz. Der bekannte
+metrische Bezug bleibt dadurch erhalten, dass jeder Taktwechsel den Anker
+auf den Taktanfang zurücksetzt und bei N die Eins erwartet wird. Ein
+verschobener Puls ist innerhalb des Takts nach der ersten Verschiebung
+regulär und bezahlt die ausbleibende Eins in jedem Takt neu. Der frühere
+Vorschlag, das erste Gitter beizubehalten, ist abgelöst. Keine neue
+Ankerpolitik wird in den Bestandsalgorithmus übertragen.
 
 ## 8. Gegenprüfung am bestätigten Punktierungsfall und am Analyseende
 
@@ -488,7 +505,8 @@ Klang G, Onsets 0 und 3/2, Tonende bei 3/2, Randende bei 2. Bestätigt ist
 A=0, `10` bei 0, fehlendes erwartetes Offset bei 1 → `01`, danach Erwartung
 2; bei 3/2 `00 00` bis Δ=1/2. Summe bis zum zweiten Einsatz: 8 Bit.
 
-- K-A erhält A=0; kein Konflikt mit dem bestätigten Anker.
+- K-A: Bis zum zweiten Einsatz ist der erste der zuletzt gespielte, also
+  A=0; kein Konflikt mit dem bestätigten Anker.
 - K-G verbietet `11` bei 1, weil der Ton bis 3/2 weiterklingt. Eine neue
   Regel „bei Ausbleiben immer `11`“ würde hier die hörbare Fortdauer
   verletzen und ist daher abzulehnen. Dass `11` kein Tonende voraussetzt,
@@ -542,8 +560,10 @@ Varianten werden nicht mehr in den aktiven Ergebnistabellen geführt.
 | Abschluss am Fensterende | Kein `11` allein wegen der Grenze; Zustand weiterführen, tatsächliche Grenzereignisse regulär auswerten. | Kein pauschaler Aufschlag auf die Ergebnisse für `[0,4)`. E-P als allgemeine Abschlussregel entfällt. |
 
 Diese Fragen werden nicht erneut als offene Grundsatzfragen gestellt.
-Weiter offen bleiben K-A, K-P, die noch unbestätigten Teile von K-G,
-die genaue Erkennungspolitik und die Auswahl/Festschreibung konkurrierender
-Interpretationen. Insbesondere bestimmt das Bezahlen der Anfangspause
+Am 13. November 2026 kamen hinzu: Ankerregel (K-A), Erkennung am
+erwarteten Rasterpunkt und die Schrittweite der Teilungswechsel.
+Ebenfalls am 13. November 2026 wurde der Pausenzustand (K-P) bestätigt.
+Weiter offen bleiben die noch unbestätigten Teile von K-G,
+die Erkennungspolitik für gespielte Musik und die Übergangsregeln im Einzelnen. Insbesondere bestimmt das Bezahlen der Anfangspause
 noch keine Wahrnehmungslatenz. Diese Punkte werden durch die Entscheidungen
 nicht unbemerkt ergänzt; ein Implementierungsplan folgt hieraus noch nicht.

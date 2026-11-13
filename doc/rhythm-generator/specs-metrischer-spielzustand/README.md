@@ -51,6 +51,21 @@ Fortsetzung ergibt ein neues Beispiel, das Wert und Deutung der früheren
 Takte ändern kann. Vagheit innerhalb eines Takts ist gewollt. Ausführlich:
 [Vertrag, Leitsätze](01-fachlicher-vertrag.md#leitsätze).
 
+**Entscheidungen vom 13. November 2026:** Das Raster zählt vom zuletzt
+gespielten Einsatz; ein Taktwechsel setzt nur den Anker auf den Taktanfang
+zurück, und die Eins ist bei „Noten spielen“ erwartet. Auf dem exakten
+Raster gilt ein Ausbleiben am erwarteten Rasterpunkt als erkannt.
+Mehrfaches Verstärken am selben Ereignis ist erlaubt; ein einzelnes
+Ausbleiben verringert die Teilung nur um eine Stufe. Die günstigsten
+Werte der gerechneten Beispiele bleiben unverändert. Der Pausenzustand
+behält Abstand und Anker; die vollständigen Regeln für den Kern unter
+Impulsklang stehen in der
+[Übergangstabelle](01-fachlicher-vertrag.md#2-wörterbuch-und-zustand).
+Unter gehaltenem Klang wird ein Tonende ohne Neuanschlag als
+Pauseneinsatz gehört und wird zum Anker; ein über den Taktstrich
+gehaltener Ton kostet auf der Eins `01`. Trommel- und Orgelfall sind
+damit durch dieselbe Übergangstabelle beschrieben.
+
 ## Geprüfter Repository-Stand
 
 Die F05-Rechnungen wurden auf `835655e` ausgearbeitet und mit `1147924`
@@ -116,7 +131,9 @@ und die daraus folgenden Äquivalenzprüfungen getrennt aus.
 Die sieben einfachen F05-Figuren sind jetzt in
 [Abschnitt 3 der Ereignisabläufe](02-bildpruefung-und-ereignisablaeufe.md#3-schrittweise-rechnung-f051f057-unter-i-und-g)
 schrittweise unter I und G berechnet, einschließlich konkurrierender `11`-/
-`01`-Pfade. K-A, K-P und die noch unbestätigten Teile von K-G bleiben
+`01`-Pfade. Die Ankerregel (K-A) und die Erkennung am Rasterpunkt sind
+seit dem 13. November 2026 entschieden, ebenso der Pausenzustand (K-P);
+die noch unbestätigten Teile von K-G bleiben
 Rechenannahmen. Anfangspause und Analysegrenze sind entschieden:
 Anfangspause mit `11` bezahlen; kein zusätzliches `11` allein wegen der
 Grenze; Zustand fortführen und tatsächliche Grenzereignisse regulär auswerten.
