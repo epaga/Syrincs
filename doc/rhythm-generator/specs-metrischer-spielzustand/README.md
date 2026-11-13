@@ -44,6 +44,13 @@ F05.6.I mit Einsätzen bei 0 und 1 ist deshalb `10 11` als Kandidat mit
 Einsatz bei 2 begründet. Ein vollständiger Minimalitätsnachweis wird damit
 nicht behauptet.
 
+**Leitsätze, Präzisierung vom 13. November 2026:** Der Informationswert
+gilt für ein endliches Beispiel als Ganzes und ist das Minimum über dessen
+zulässige Anweisungsfolgen unter der benannten Klangbedingung. Eine
+Fortsetzung ergibt ein neues Beispiel, das Wert und Deutung der früheren
+Takte ändern kann. Vagheit innerhalb eines Takts ist gewollt. Ausführlich:
+[Vertrag, Leitsätze](01-fachlicher-vertrag.md#leitsätze).
+
 ## Geprüfter Repository-Stand
 
 Die F05-Rechnungen wurden auf `835655e` ausgearbeitet und mit `1147924`

@@ -6,6 +6,43 @@ Regeln sind bis zur ausdrücklichen Entscheidung unverbindlich.
 
 ## 1. Ziel und bekannte Bedingungen
 
+### Leitsätze
+
+**Festgelegt, Präzisierung des Projektinhabers vom 13. November 2026:**
+
+1. **Der Informationswert gilt für ein endliches Beispiel als Ganzes.**
+   Er ist das Minimum der Kosten über alle zulässigen Anweisungsfolgen
+   dieses Beispiels unter seiner benannten Klangbedingung. Nur endliche
+   Beispiele besitzen einen berechenbaren Wert.
+2. **Eine Fortsetzung ergibt ein neues Beispiel mit eigenem Wert.** Hinter
+   jedem Beispiel kann ein weiterer Takt stehen, der den Wert und die
+   günstigste Deutung der früheren Takte ändert. Der Wert eines Beispiels
+   ist deshalb keine Summe feststehender Taktwerte.
+3. **Vagheit innerhalb eines Takts ist gewollt.** Solange mehrere
+   Deutungen zulässig sind, bleiben sie nebeneinander bestehen. Erst
+   weitere Information „aus der Zukunft“ erlaubt es, den Wert klar zu
+   benennen. Die offene Deutung ist Teil des Ergebnisses, kein Fehler.
+4. **Die Klangbedingung hängt von der Ausführung ab.** Auf einer Orgel ist
+   ein Tonende gut hörbar, auf einer Trommel nur der Impuls des Anfangs.
+   Derselbe notierte Rhythmus kann daher unter I und G verschiedene Werte
+   haben; ohne benannte Klangbedingung gibt es keinen Wert.
+
+**Rechenbeispiel unter Profil K (K-A und K-P unbestätigt):** F05.2 unter I
+kostet allein 4 Bit (`10 11`). Folgt ein Takt mit nur einem Einsatz bei 4,
+kostet das zweitaktige Beispiel 6 Bit über `10 01 01`; der Pausenpfad
+`10 11 10 11` kostet 8. Der zweite Takt ändert also rückblickend die
+günstigste Deutung des ersten von „Pausen spielen“ zu zweimaligem
+Verringern der Teilung.
+
+**Folgerung unter Profil K, kein Beschluss:** Eine Verlängerung kann den
+Wert nicht senken, weil jede zulässige Anweisungsfolge des längeren
+Beispiels eine zulässige Folge des kürzeren enthält.
+
+Die folgenden Abschnitte sind im Sinn dieser Leitsätze zu lesen. Aussagen
+über das Erhalten bereits entstandener Information gelten **innerhalb
+einer Anweisungsfolge**, nicht zwischen einem Beispiel und seiner
+Verlängerung.
+
 **Festgelegt (Z01–Z03):** Beschrieben werden soll rhythmisches Hören;
 praktisches Hauptziel ist Musikgenerierung. Ein bereits etablierter Beat
 bzw. ein Metrum ist gegeben, seine Erkennung ist nicht Teil des Kerns.
@@ -225,6 +262,13 @@ der bloßen Grenze. Es gibt weder einen kostenlosen Reset noch eine
 pauschale Abschlussgebühr. Die F05-Kosten für `[0,4)` enthalten keinen
 künstlichen Abschluss; Ereignisse bei 4 gehören zur Auswertung an 4.
 
+**Präzisierung vom 13. November 2026 (Leitsätze 1 und 2):** „Zustand
+weiterführen“ bedeutet, dass ein verlängertes Beispiel ohne Reset über die
+frühere Grenze hinweg ausgewertet wird. Es bedeutet nicht, dass der Wert
+und die Deutung des kürzeren Beispiels unverändert übernommen und nur um
+einen Folgebetrag ergänzt werden. Das verlängerte Beispiel wird als Ganzes
+bewertet.
+
 **Weiter offen:** Die konkrete Erkennung und Zuordnung einer vor der Grenze
 entstandenen, erst danach entscheidbaren Ausbleibeerwartung. In einer
 fortlaufenden Analyse darf sie nicht mit dem Ausschnitt verworfen werden.
@@ -234,8 +278,16 @@ fortlaufenden Analyse darf sie nicht mit dem Ausschnitt verworfen werden.
 **Festgelegt (M01–M05):** Sparsamkeit gilt zwischen hörbar gleichwertigen
 Interpretationen. Hörbare Ereignisse bleiben erhalten; erkannte
 Ausbleibeinformation ebenfalls. Spätere Korrektur ist möglich.
-Mehrdeutigkeit soll mit dem Beginn des nächsten Takts abgeschlossen werden.
-Letzteres ist eine Modellentscheidung, kein nachgewiesenes Hörgesetz.
+Mit dem Beginn des nächsten Takts wird der Wert des bis dahin vorliegenden
+Beispiels benannt. Das ist eine Modellentscheidung, kein nachgewiesenes
+Hörgesetz.
+
+**Präzisierung vom 13. November 2026 (Leitsätze 2 und 3):** Dieser
+Abschluss gilt für das Beispiel, das an der Taktgrenze endet. Folgt ein
+weiterer Takt, liegt ein neues Beispiel vor; dessen Minimum darf die
+Deutung der früheren Takte neu bestimmen. Die frühere Lesart, nach der
+jede Mehrdeutigkeit am Taktbeginn endgültig entschieden ist, ist damit
+abgelöst.
 
 **Festgelegt – Rangfolge im Konflikt mit dem Foto:** Zulässigkeit wird an
 den hörbaren Ereignissen unter I bzw. G und am zeitlichen Informationsstand
@@ -262,22 +314,28 @@ dagegen das tatsächliche Weiterklingen den P-Pfad konkret ausschließen.
 2. Sobald die festgelegte Erkennungspolitik eine Änderung entscheidet,
    werden Anlass, gewählte Anweisungen und deren Kosten festgeschrieben.
    Zulässige Fortsetzungen müssen diese Entscheidungshistorie übernehmen.
-3. Spätere Evidenz kann neue Änderungsanweisungen hinzufügen. Sie ersetzt
-   keinen bereits bezahlten Befehl durch eine billigere Vorgeschichte.
+3. Innerhalb einer Anweisungsfolge kann spätere Evidenz neue
+   Änderungsanweisungen hinzufügen; sie löscht dort keinen bereits
+   bezahlten Befehl. Welche Anweisungsfolge für ein Beispiel gilt,
+   entscheidet dagegen das Minimum über das ganze Beispiel (Leitsatz 1).
+   Bei einem verlängerten Beispiel kann deshalb eine andere Folge gelten
+   als beim kürzeren.
 4. Innerhalb der noch unentschiedenen Interpretationen dürfen nur Varianten
    verglichen werden, die dieselben festgeschriebenen Erkenntnisse und alle
    hörbaren Ereignisse erhalten. Gewählt wird die günstigste zulässige
    Fortsetzung. Wann genau etwas festgeschrieben wird, braucht D03.
-5. Am Taktabschluss wird unter diesen Bedingungen entschieden; bei Gleichstand
-   bleiben Gleichwertigkeit und Alternativen sichtbar. Ein deterministischer
-   Vertreter kann technisch gewählt werden. Abschluss bedeutet weder
-   psychologische Eindeutigkeit noch Reset von Spielmodus, Δ oder Phase.
+5. Am Ende des Beispiels wird unter diesen Bedingungen entschieden; bei
+   Gleichstand bleiben Gleichwertigkeit und Alternativen sichtbar. Ein
+   deterministischer Vertreter kann technisch gewählt werden. Abschluss
+   bedeutet weder psychologische Eindeutigkeit noch Reset von Spielmodus,
+   Δ oder Phase, und er bindet ein verlängertes Beispiel nicht.
 
-**Grenze dieses Vorschlags:** Ein bloßer Minimumvergleich vollständiger
-Pfade mit unterschiedlichen früheren Erwartungen genügt nicht. Er könnte
-nachträglich gerade den Pfad auswählen, der den ausgebliebenen Viertel-
-Einsatz nie erwartet hatte. Es muss vorab feststehen, welche Erwartungen
-verbindlich waren und wann die Erkennung sie geändert hat. Eine nur lokal
+**Grenze dieses Vorschlags:** Das Minimum nach Leitsatz 1 vergleicht nur
+Anweisungsfolgen, die vom selben festgelegten Anfangszustand ausgehen
+(bekannter Bezug, Anfangsabstand, erster Einsatz `10`) und jede Abweichung
+von ihren eigenen Erwartungen bezahlen. Unzulässig bleibt ein Vergleich,
+der rückblickend ein anderes Anfangsgitter wählt und dadurch den
+ausgebliebenen Viertel-Einsatz nie erwartet hätte. Eine nur lokal
 billigste Operation ist ebenso wenig bereits festgelegt. V07 ist ein
 Entscheidungsrahmen, noch kein vollständiger Auswahlalgorithmus.
 
