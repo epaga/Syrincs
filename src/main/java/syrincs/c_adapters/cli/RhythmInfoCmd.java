@@ -7,7 +7,11 @@ import picocli.CommandLine.Model.CommandSpec;
 import picocli.CommandLine.Model.OptionSpec;
 
 import syrincs.a_domain.rhythm.information.*;
+import syrincs.a_domain.rhythm.metricstate.MetricStateAnalyzer;
+import syrincs.a_domain.rhythm.metricstate.SoundCondition;
 import syrincs.b_application.rhythm.information.*;
+import syrincs.b_application.rhythm.metricstate.MetricStateRequest;
+import syrincs.c_adapters.rhythm.information.MetricStateJson;
 import syrincs.c_adapters.rhythm.information.RhythmInformationJson;
 
 import java.io.IOException;
@@ -47,7 +51,8 @@ public class RhythmInfoCmd implements Runnable {
                 names = "--measure",
                 defaultValue = "description-v1",
                 description =
-                        "Versioned measure (description-v1); existing commands keep legacy units")
+                        "Versioned measure: description-v1 (default) or metric-state-v1 (analyze only);"
+                                + " existing commands keep legacy units")
         String measure;
 
         @Option(
@@ -267,8 +272,23 @@ public class RhythmInfoCmd implements Runnable {
         @Parameters(
                 index = "0",
                 arity = "0..1",
-                description = "Nonempty x/o onset word, 1..128 slots")
+                description =
+                        "Nonempty onset word, 1..128 slots: x/o (description-v1); x, = (tone holds,"
+                                + " sustained only) and o (metric-state-v1)")
         String onsets;
+
+        @Option(
+                names = "--sound",
+                description =
+                        "metric-state-v1 only, required, no default: impulse (x/o) or sustained"
+                                + " (x, =, o)")
+        String sound;
+
+        @Option(
+                names = "--beat-slots",
+                description =
+                        "metric-state-v1 only, required: grid positions per beat, a power of two")
+        Integer beatSlots;
 
         @Option(
                 names = "--include-global",
@@ -282,8 +302,22 @@ public class RhythmInfoCmd implements Runnable {
                                 + " 4/4")
         boolean compareLegacy;
 
+        private static final Set<String> METRIC_STATE_OPTIONS =
+                Set.of(
+                        "--measure",
+                        "--sound",
+                        "--beat-slots",
+                        "--bar-slots",
+                        "--format",
+                        "--alternatives-limit");
+
         @Override
         int execute() throws IOException {
+            if (options.measure.equals(MetricStateAnalyzer.VERSION)) return executeMetricState();
+            if (sound != null || beatSlots != null)
+                throw new IllegalArgumentException(
+                        "--sound and --beat-slots require --measure "
+                                + MetricStateAnalyzer.VERSION);
             OnsetSequence word;
             AnalysisSettings settings;
             List<Rational> events = List.of();
@@ -302,6 +336,48 @@ public class RhythmInfoCmd implements Runnable {
             }
             outputAnalysis(
                     parent.facade().analyze(word, settings, includeGlobal, compareLegacy), events);
+            return 0;
+        }
+
+        private int executeMetricState() {
+            for (OptionSpec option : spec.commandLine().getParseResult().matchedOptions())
+                if (Arrays.stream(option.names()).noneMatch(METRIC_STATE_OPTIONS::contains))
+                    throw new IllegalArgumentException(
+                            "Option "
+                                    + option.longestName()
+                                    + " belongs to description-v1 and cannot be combined with"
+                                    + " --measure "
+                                    + MetricStateAnalyzer.VERSION);
+            if (onsets == null)
+                throw new IllegalArgumentException("Provide events (x, =, o) for metric-state-v1");
+            if (sound == null)
+                throw new IllegalArgumentException(
+                        "--sound impulse|sustained is required for metric-state-v1; there is no"
+                                + " default");
+            SoundCondition condition =
+                    switch (sound) {
+                        case "impulse" -> SoundCondition.IMPULSE;
+                        case "sustained" -> SoundCondition.SUSTAINED;
+                        default ->
+                                throw new IllegalArgumentException(
+                                        "Sound must be impulse or sustained");
+                    };
+            if (beatSlots == null)
+                throw new IllegalArgumentException("--beat-slots is required for metric-state-v1");
+            if (options.barSlots == null)
+                throw new IllegalArgumentException("--bar-slots is required for metric-state-v1");
+            var result =
+                    parent.facade()
+                            .analyzeMetricState(
+                                    new MetricStateRequest(
+                                            condition,
+                                            beatSlots,
+                                            options.barSlots,
+                                            onsets,
+                                            options.alternativesLimit));
+            PrintWriter out = spec.commandLine().getOut();
+            if (options.format.equals("json")) out.println(new MetricStateJson().result(result));
+            else MetricStateText.print(result, out);
             return 0;
         }
     }
