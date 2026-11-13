@@ -23,6 +23,7 @@ Defaults dieses neuen Modells.
 | [Fachlicher Vertrag](01-fachlicher-vertrag.md) | Festlegungen, Vorschläge und noch fehlende Regeln. |
 | [Bildprüfung und Ereignisabläufe](02-bildpruefung-und-ereignisablaeufe.md) | Herkunft der Beispielwerte, explizite Zeiten und Gegenproben. |
 | [Literatur und Erkennung](03-literatur-und-erkennung.md) | Geprüfte Fundstellen, Übertragungsgrenzen und Toleranzvorschlag. |
+| [Implementierungsplan](04-implementierungsplan.md) | Entwurf: Maßversion `metric-state-v1`, Lieferstufen, Prüffälle und offene technische Entscheidungen. |
 
 **Festgelegt** bedeutet im übergebenen Entwurf als Entscheidung des
 Projektinhabers ausgewiesen. **Folgerung** ist eine überprüfbare Ableitung.

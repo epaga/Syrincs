@@ -246,6 +246,12 @@ man die Pause als Einsatz. Das ist die einzige Möglichkeit, eine Pause als
 Einsatz zu hören. Unter I gibt es deshalb keine Pauseneinsätze; dort
 bleibt „Pausen spielen“ eine Deutung des Ausbleibens.
 
+**Festgelegt – Schreibweise, 13. November 2026:** Rasterbeispiele unter G
+werden mit `x` (Einsatz), `=` (Ton hält) und `o` (Stille) notiert, etwa
+Halbe plus halbe Pause als `x=== ==== oooo oooo`. Der Pauseneinsatz ist
+die erste Stille nach `x` oder `=`. Unter I sind nur `x` und `o` zulässig.
+Die Schreibweise ist von RDL getrennt.
+
 **Festgelegt – Übergangstabelle unter G, bestätigt am 13. November 2026:** G
 verwendet dieselbe Tabelle mit einer zweiten Ereignisart, dem
 Pauseneinsatz. Es ändern sich nur die Zeilen zum erwarteten Punkt in N:
